@@ -4,6 +4,7 @@ $("form").submit(function( event ) {
   var inputObj = $(this).serializeArray();
 
   event.preventDefault();
+  var allData = [];
   // var financeRequests = [];
   // for (var key in inputObj) {
   //   let ticker = inputObj[key].value;
@@ -35,7 +36,15 @@ $("form").submit(function( event ) {
       }
       tempData.push(tempSymbol);
       tempData.push(price);
-      console.log(tempData);
+      allData.push(tempData);
+
     }
   // });
+
+    $('form').find('.stock').each(function (i,e) {
+      var element = $('<div>');
+      element.html(allData[i][1]);
+      $(this).append(element);
+    });
+
 });
