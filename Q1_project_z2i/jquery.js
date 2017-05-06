@@ -31,20 +31,19 @@ $("form").submit(function( event ) {
       var tempBid =  parseFloat(tempObj.bid);
       var tempAsk =  parseFloat(tempObj.ask);
       var tempClose =  parseFloat(tempObj.close);
-      var price = 0;
-
+      var tempPrice = 0;
 
       if (tempAsk >= 0 && tempBid >= 0) { //finds price by bid/ask OR close
-        price = (tempBid+tempAsk)*0.5;
+        tempPrice = (tempBid+tempAsk)*0.5;
       } else {
-        price = tempClose;
+        tempPrice = tempClose;
       }
+      var price = parseFloat(tempPrice.toFixed(2));
       tempData.push(price);
+
     }         // END PROMISE -> ACTIONS FROM HERE
-    $('form').find('.ticker_inp').each(function (i) { //appends price to page
-      var element = $('<div>');
-      element.html("price: $"+tempData[i]);
-      $(this).append(element);
+    $('form').find('.current_price').each(function (i) { //appends price to page
+      $(this).html("price: $"+tempData[i]);
     });
 
     var investment = parseFloat($("#dollar_inv").val());
@@ -53,13 +52,11 @@ $("form").submit(function( event ) {
       return obj['name'] == 'percent';
     });
 
-    $('form').find('.percent').each(function (i) { //
+    $('form').find('.shares').each(function (i) { //
       var percentNum = parseFloat(percent[i].value)/100;
       let price = tempData[i]
       shares = Math.floor((investment * percentNum)/price);
-      var element = $('<div>');
-      element.html(shares+" shares");
-      $(this).append(element);
+      $(this).html(shares+" shares");
     });
 
 

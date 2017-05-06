@@ -4,83 +4,79 @@
     <meta charset="utf-8">
     <title>portfolio</title>
     <script defer src="jQuery.js"></script>
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <!-- Compiled and minified CSS -->
-      <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-      <!-- Compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-      <link type="text/css" href="styles.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link type="text/css" href="styles.css" rel="stylesheet">
   </head>
   <body>
     <!--NAV BAR -->
-    <nav>
-    <div class="nav-wrapper grey">
-      <a href="index.html" class="brand-logo">z2i</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="port.html">Portfolio</a></li>
-      </ul>
-    </div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img alt="Brand" src="...">
+          </a>
+        </div>
+        <ul class="nav nav-pills">
+          <li role="presentation" class="active"><a href="#">Home</a></li>
+          <li role="presentation"><a href="#">Profile</a></li>
+          <li role="presentation"><a href="#">Messages</a></li>
+        </ul>
+      </div>
     </nav>
+
+  <div class="container-fluid col-md-12">
     <!--Investment $ input -->
-    <div class="dollar_inv">
-      <input style="border:none;" type="text" name="dollar_inv" value="100000" id="dollar_inv">
+    <div class="row">
+      <div class="dollar_inv col-md-3 col-md-offset-6">
+        <input style="border:none;" type="text" name="dollar_inv" value="100000" id="dollar_inv">
+      </div>
     </div>
-    <!--Elements -->
-    <form class="col 12">
-      <div class="row">
-        <div class="stock col s12 m6">
-          <div class="ticker_inp">
-            <input style="border:none;" type="text" name="ticker" value="aapl">
-          </div>
-          <div class="percent">
-            <input style="border:none;" type="text" name="percent" value="55%">
-          </div>
-        </div>
-      </div>
-      <div class="row"
-        <div class="stock">
-          <div class="ticker_inp">
-            <input style="border:none;" type="text" name="ticker" value="googl">
-          </div>
-          <div class="percent">
-            <input style="border:none;" type="text" name="percent" value="45%">
-          </div>
-        </div>
-      </div>
-      <!-- <div><input type="text" name="3" value="jpm" id="3"></div>
-      <div><input type="text" name="4" value="ge" id="4"></div>
-      <div><input type="text" name="5" value="dva" id="5"></div>
-      <div><input type="text" name="6" value="ihy" id="6"></div>
-      <div><input type="text" name="7" value="hyg" id="7"></div> -->
-      <div>
-        <input type="submit" name="a" value="Submit" id="a">
-      </div>
-    </form>
-      <!--Footer -->
-    <footer class="page-footer grey">
-      <div class="container">
+      <!--Elements -->
+      <form class="col-md-12">
         <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">z2i</h5>
-            <p class="grey-text text-lighten-4">Thank you for using z2i</p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-            </ul>
+          <div class="stock col-md-8 col-md-offset-2">
+            <div class="ticker_inp col-md-1">
+              <input style="border:none;" type="text" name="ticker" value="aapl">
+            </div>
+            <div class="percent col-md-1">
+              <input style="border:none;" type="text" name="percent" value="55%">
+            </div>
+            <div class="current_price percent col-md-3"></div>
+            <div class="shares percent col-md-2"></div>
           </div>
         </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-        Made using Yahoo Finance API
-        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        <div class="row">
+          <div class="stock col-md-8 col-md-offset-2">
+            <div class="ticker_inp ticker_inp col-md-1">
+              <input style="border:none;" type="text" name="ticker" value="googl">
+            </div>
+            <div class="percent ticker_inp col-md-1">
+              <input style="border:none;" type="text" name="percent" value="45%">
+            </div>
+            <div class="current_price percent col-md-3"></div>
+            <div class="shares percent col-md-2"></div>
+          </div>
         </div>
-      </div>
-    </footer>
+        <!-- <div><input type="text" name="3" value="jpm" id="3"></div>
+        <div><input type="text" name="4" value="ge" id="4"></div>
+        <div><input type="text" name="5" value="dva" id="5"></div>
+        <div><input type="text" name="6" value="ihy" id="6"></div>
+        <div><input type="text" name="7" value="hyg" id="7"></div> -->
+        <div class="col-md-3 col-md-offset-6">
+          <input type="submit" name="a" value="Submit" id="a">
+        </div>
+      </form>
+
+    </div>
   </body>
 </html>

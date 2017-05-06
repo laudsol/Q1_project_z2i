@@ -1,0 +1,57 @@
+/* -------- =Structure -------*/
+.wrapper {
+  width: 980px;
+  margin: auto;
+}
+
+
+/* -------- =Column Layout -------*/
+
+  .one_fourth {   width:220px;  }
+  .one_third {    width:300px;  }
+  .one_half {     width:460px;  }
+  .two_third {    width:620px;  }
+  .three_fourth { width:700px;  }
+  .full_column {  width: 940px; }
+
+  .one_half,
+  .one_third,
+  .two_third,
+  .three_fourth,
+  .one_fourth,
+  .full_column {
+    float:left;
+    margin-left:20px;
+    margin-bottom:20px;
+  }
+
+/* -- Clearfix -- */
+  .row:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+
+/* -------- =Demo Styles -------*/
+/*  No need to copy these styles into your code as they are just for this demo to highlight the columns since they don't have much content. */
+
+.one_half,
+.one_third,
+.two_third,
+.three_fourth,
+.one_fourth,
+.full_column {
+  background-color: #404040;
+  color: #fff;
+  font-family: arial, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/*
+	STYLE.CSS:
+	One stylesheet to rule them all.
+
+	selector { property:value }
+
+*/
