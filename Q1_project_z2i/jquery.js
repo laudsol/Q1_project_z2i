@@ -73,10 +73,21 @@ $("form").submit(function( event ) {
         return obj['name'] == 'percent';
       });
 
+      var currentSharesArr = [];
+      var totalInvestedDollars = investment;
+
+      $('form').find('.currentShares').each(function (i) {
+        let targetDollars = parseFloat($(this).val())*tempData[i];
+        totalInvestedDollars += targetDollars;
+        currentSharesArr.push(parseFloat($(this).val()));
+      });
+
       $('form').find('.shares').each(function (i) { //
         var percentNum = parseFloat(percent[i].value)/100;
-        let price = tempData[i]
-        shares = Math.floor((investment * percentNum)/price);
+        let price = tempData[i];
+        let dollarTarget = (totalInvestedDollars*percentNum)-(currentSharesArr[i]*price);
+        console.log(dollarTarget);
+        shares = Math.floor((dollarTarget)/price);
         $(this).html("Recommended shares: "+shares);
       });
 
