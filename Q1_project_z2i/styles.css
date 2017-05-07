@@ -12,6 +12,72 @@
   margin-right: 3.5%;
 }
 
-.submit {
+.percent {
+  margin-left: -15px;
+}
+
+.current_shares {
+  margin-left: -50px;
+}
+
+.currentShares {
+  margin-left: -25px;
+  width: 65px;
+  color: white;
+  background-color: green;
+  text-align: cetner;
+}
+
+.priceText {
+  margin-left: -30px;
+}
+
+.totalAllocation {
+  margin-left: 136px;
+}
+
+.totalAllocationPerc {
+  margin-left: -50px;
+}
+
+.totalRow {
+  margin-top: 25px;
+}
+
+.tickerInput {
+  width: 65px;
+  color: white;
+  background-color: green;
+}
+
+.percentVal {
+  width: 65px;
+  color: white;
+  background-color: green;
+}
+
+.totalAllocationPerc {
+  width: 65px;
+  color: white;
+  background-color: green;
+  margin-left: -42px;
+}
+
+.dollarInput {
+  width: 100px;
+  color: white;
+  background-color: green;
+  margin-left: -50px;
+}
+
+.dollars {
   margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.current_price {
+  width: 65px;
+  color: white;
+  background-color: green;
+  margin-left: -25px;
 }
