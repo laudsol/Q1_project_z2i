@@ -1,6 +1,22 @@
+
+
+$("form").on('input',$('.percentVal'), function (event) { // listener for percent of allocation
+  var totalPercent = 0;
+
+  $('form').find('.percentVal').each(function (i) {
+    var number = $(this).val();
+
+    if (number.charAt(number.length-1)=='%') {
+      number = number.substring(0,number.length-1);
+    }
+    percent = parseFloat(number);
+    totalPercent += percent;
+  });
+  $('.totalAllocation').html("Total allocation: "+totalPercent+"%");
+}); // END PERCENT LISTENER
+
 myStorage = localStorage;
 localData = JSON.parse(localStorage['data']);
-// console.log(localData[0][0]['symbol']);
 var allData = [];
 
 $("form").submit(function( event ) {
@@ -8,7 +24,8 @@ $("form").submit(function( event ) {
   var tickers = inputObj.filter(function(obj){  //finds tickers from form data
     return obj['name'] == 'ticker';
   });
-  var tempData = []; //takes prased JSON data for action
+  var tempData = []; //takes parsed JSON data for action
+  // if ()
   event.preventDefault();
   var financeRequests = [];
   for (var key in tickers) {
@@ -43,7 +60,7 @@ $("form").submit(function( event ) {
 
     }         // END PROMISE -> ACTIONS FROM HERE
     $('form').find('.current_price').each(function (i) { //appends price to page
-      $(this).html("price: $"+tempData[i]);
+      $(this).html("Price: $"+tempData[i]);
     });
 
     var investment = parseFloat($("#dollar_inv").val());
@@ -56,9 +73,8 @@ $("form").submit(function( event ) {
       var percentNum = parseFloat(percent[i].value)/100;
       let price = tempData[i]
       shares = Math.floor((investment * percentNum)/price);
-      $(this).html(shares+" shares");
+      $(this).html("Recommended shares: "+shares);
     });
-
 
   }); //END API CALL
 });

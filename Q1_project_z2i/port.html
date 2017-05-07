@@ -21,15 +21,13 @@
     <!--NAV BAR -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="navbar-header navbar-right">
           <a class="navbar-brand" href="#">
-            <img alt="Brand" src="...">
+            zero-2-invested
           </a>
         </div>
         <ul class="nav nav-pills">
-          <li role="presentation" class="active"><a href="#">Home</a></li>
-          <li role="presentation"><a href="#">Profile</a></li>
-          <li role="presentation"><a href="#">Messages</a></li>
+          <li role="presentation" class="active"><a href="index.html">Home</a></li>
         </ul>
       </div>
     </nav>
@@ -37,43 +35,47 @@
   <div class="container-fluid col-md-12">
     <!--Investment $ input -->
     <div class="row">
-      <div class="dollar_inv col-md-3 col-md-offset-6">
-        <input style="border:none;" type="text" name="dollar_inv" value="100000" id="dollar_inv">
+      <div class="dollar_inv col-md-5 col-md-offset-6">
+        <label>How much are you investing today?</label>
+        <input type="text" name="dollar_inv" value="100000" id="dollar_inv">
       </div>
     </div>
       <!--Elements -->
-      <form class="col-md-12">
+      <form>
         <div class="row">
-          <div class="stock col-md-8 col-md-offset-2">
-            <div class="ticker_inp col-md-1">
-              <input style="border:none;" type="text" name="ticker" value="aapl">
+          <div class="stock col-md-10 col-md-offset-1">
+            <div class="ticker_inp col-md-2">
+              <label class="col-md-6">Ticker:</label>
+              <input class="col-md-6" style="border:none;" type="text" name="ticker" value="aapl">
             </div>
-            <div class="percent col-md-1">
-              <input style="border:none;" type="text" name="percent" value="55%">
+            <div class="percent col-md-3">
+              <label class="col-md-5">Allocation:</label>
+              <input class="percentVal col-md-4" style="border:none;" type="text" name="percent" value="55%">
             </div>
-            <div class="current_price percent col-md-3"></div>
-            <div class="shares percent col-md-2"></div>
+            <div class="current_price col-md-3">Price:</div>
+            <div class="shares percent col-md-3">Recommended shares:</div>
           </div>
         </div>
         <div class="row">
-          <div class="stock col-md-8 col-md-offset-2">
-            <div class="ticker_inp ticker_inp col-md-1">
-              <input style="border:none;" type="text" name="ticker" value="googl">
+          <div class="stock col-md-10 col-md-offset-1">
+            <div class="ticker_inp ticker_inp col-md-2">
+              <label class="col-md-6">Ticker:</label>
+                <input class="col-md-6" style="border:none;" type="text" name="ticker" value="googl">
             </div>
-            <div class="percent ticker_inp col-md-1">
-              <input style="border:none;" type="text" name="percent" value="45%">
+            <div class="percent col-md-3">
+              <label class="col-md-5">Allocation:</label>
+              <input class="percentVal col-md-4" style="border:none;" type="text" name="percent" value="45%">
             </div>
-            <div class="current_price percent col-md-3"></div>
-            <div class="shares percent col-md-2"></div>
+            <div class="current_price col-md-3">Price:</div>
+            <div class="shares percent col-md-3">Recommended shares:</div>
           </div>
         </div>
-        <!-- <div><input type="text" name="3" value="jpm" id="3"></div>
-        <div><input type="text" name="4" value="ge" id="4"></div>
-        <div><input type="text" name="5" value="dva" id="5"></div>
-        <div><input type="text" name="6" value="ihy" id="6"></div>
-        <div><input type="text" name="7" value="hyg" id="7"></div> -->
-        <div class="col-md-3 col-md-offset-6">
-          <input type="submit" name="a" value="Submit" id="a">
+        <div class="row">
+          <div class="totalAllocation col-md-3 col-md-offset-2">Total allocation: 100%
+          </div>
+          <div class="submit col-md-1 col-md-offset-3">
+            <input type="submit" name="a" value="Submit" id="a">
+          </div>
         </div>
       </form>
 

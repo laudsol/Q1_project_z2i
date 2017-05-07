@@ -1,1 +1,16 @@
+.stock {
+  margin-top: 15px;
+  border: 1px black solid;
+  height: 40px;
+  padding-top: 10px;
+}
 
+.panel {
+  height: 150px;
+  margin-left: 3.5%;
+  margin-right: 3.5%;
+}
+
+.submit {
+  margin-top: 20px;
+}
