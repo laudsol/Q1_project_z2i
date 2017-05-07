@@ -3,6 +3,7 @@
   border: 1px black solid;
   height: 40px;
   padding-top: 10px;
+  float: left;
 }
 
 .panel {
