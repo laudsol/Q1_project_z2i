@@ -16,7 +16,7 @@ https://trello.com/b/O3R3WlyC/portfolio-tool
 
 **Link to wireframes:** 
 
-https://www.draw.io/?state=%7B%22ids%22:%5B%220B2hDD_-mRIuDakhyZ3JCZV9nSWs%22%5D,%22action%22:%22open%22,%22userId%22:%22108611944749163683820%22%7D#G0B2hDD_-mRIuDakhyZ3JCZV9nSWs
+https://drive.google.com/drive/folders/0B2hDD_-mRIuDWUxtZWpfNF9YUEk
 
 
 
