@@ -1,3 +1,5 @@
+/* ELEMENTS */
+
 .stock {
   margin-top: 15px;
   border: 1px black solid;
@@ -6,21 +8,40 @@
   float: left;
 }
 
-.panel {
-  height: 150px;
-  margin-left: 3.5%;
-  margin-right: 3.5%;
+.tickerInput {
+  width: 65px;
+  color: white;
+  background-color: green;
 }
 
-.percent {
-  margin-left: -15px;
+.tickerText {
+    margin-left: -20px;
 }
 
-.current_shares {
-  margin-left: -50px;
+.allocationDiv {
+  margin-left: -25px;
 }
 
-.currentShares {
+.allocationText {
+  margin-left: -25px;
+}
+
+.allocationVal {
+  width: 65px;
+  color: white;
+  background-color: green;
+  margin-left: 35px;
+}
+
+.currentSharesDiv {
+  margin-left: -40px;
+}
+
+.currentSharesText {
+  margin-left: 30px;
+}
+
+.currentSharesInput {
   margin-left: -25px;
   width: 65px;
   color: white;
@@ -28,32 +49,40 @@
   text-align: cetner;
 }
 
+.priceDiv {
+  margin-left: -10px;
+}
+
 .priceText {
+  margin-left: 15px;
+}
+
+.currentPriceOutput {
+  width: 65px;
+  color: white;
+  background-color: green;
+  margin-left: 0px;
+}
+
+.sharesDiv {
+  margin-left: -20px;
+}
+
+.sharesText {
+  margin-left: 40px;
+}
+
+.sharesOutput {
+  width: 65px;
+  color: white;
+  background-color: green;
   margin-left: -30px;
 }
 
+/*TOTAL row*/
+
 .totalAllocation {
   margin-left: 136px;
-}
-
-.totalAllocationPerc {
-  margin-left: -50px;
-}
-
-.totalRow {
-  margin-top: 25px;
-}
-
-.tickerInput {
-  width: 65px;
-  color: white;
-  background-color: green;
-}
-
-.percentVal {
-  width: 65px;
-  color: white;
-  background-color: green;
 }
 
 .totalAllocationPerc {
@@ -62,6 +91,12 @@
   background-color: green;
   margin-left: -42px;
 }
+
+.totalRow {
+  margin-top: 25px;
+}
+
+/*Dollar input*/
 
 .dollarInput {
   width: 100px;
@@ -75,9 +110,10 @@
   margin-bottom: 20px;
 }
 
-.current_price {
-  width: 65px;
-  color: white;
-  background-color: green;
-  margin-left: -25px;
+/*SPLASH page*/
+
+.panel {
+  height: 150px;
+  margin-left: 3.5%;
+  margin-right: 3.5%;
 }
