@@ -1,95 +1,44 @@
+/*Title row*/
+
+.headerText {
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .headerText {
+    display: none;
+  }
+}
+
 /* ELEMENTS */
 
 .stock {
   margin-top: 15px;
   border: 1px black solid;
-  height: 40px;
-  padding-top: 10px;
+  height: flex;
   float: left;
 }
 
-.tickerInput {
-  width: 65px;
+.inOut{
+  margin-top: 10%;
+  margin-bottom: 10%;
+  width: flex;
   color: white;
   background-color: green;
+  text-align: center;
 }
 
-.tickerText {
-    margin-left: -20px;
+@media screen and (min-width: 768px) {
+  .mobileActive {
+    display: none;
+  }
 }
-
-.allocationDiv {
-  margin-left: -25px;
-}
-
-.allocationText {
-  margin-left: -25px;
-}
-
-.allocationVal {
-  width: 65px;
-  color: white;
-  background-color: green;
-  margin-left: 35px;
-}
-
-.currentSharesDiv {
-  margin-left: -40px;
-}
-
-.currentSharesText {
-  margin-left: 30px;
-}
-
-.currentSharesInput {
-  margin-left: -25px;
-  width: 65px;
-  color: white;
-  background-color: green;
-  text-align: cetner;
-}
-
-.priceDiv {
-  margin-left: -10px;
-}
-
-.priceText {
-  margin-left: 15px;
-}
-
-.currentPriceOutput {
-  width: 65px;
-  color: white;
-  background-color: green;
-  margin-left: 0px;
-}
-
-.sharesDiv {
-  margin-left: -20px;
-}
-
-.sharesText {
-  margin-left: 40px;
-}
-
-.sharesOutput {
-  width: 65px;
-  color: white;
-  background-color: green;
-  margin-left: -30px;
-}
-
 /*TOTAL row*/
-
-.totalAllocation {
-  margin-left: 136px;
-}
 
 .totalAllocationPerc {
   width: 65px;
   color: white;
   background-color: green;
-  margin-left: -42px;
 }
 
 .totalRow {
@@ -102,7 +51,6 @@
   width: 100px;
   color: white;
   background-color: green;
-  margin-left: -50px;
 }
 
 .dollars {
@@ -116,4 +64,35 @@
   height: 260px;
   margin-left: 3.5%;
   margin-right: 3.5%;
+}
+
+.panelHead {
+  background-color:#1B638E;
+  color: white;
+}
+
+.portButton {
+  background-color: #DF7420;
+  color: white;
+}
+
+.navbutton {
+  background-color: #102B50;
+  border-radius: 10%;
+  margin: 1%;
+  color: white;
+}
+
+.hello1 {
+  background-color: #044AAA;
+}
+
+.hello2 {
+  background-color: #070BB4
+}
+.hello3 {
+  background-color:#018B9E
+}
+.hello4 {
+  background-color:
 }

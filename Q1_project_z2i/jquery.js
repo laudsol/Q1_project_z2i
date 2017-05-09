@@ -17,6 +17,8 @@ function updatePercent (event) { // update total percent
 };
 
 
+updatePercent();
+
 $("form").on('input',$('.allocationVal'), function (event) { // listener for percent change
   updatePercent();
 });
@@ -26,9 +28,9 @@ $('.addBtn').on('click',function(event){
   let elementRow = $('<div>').addClass("row");
   let elementStock = $('<div>').addClass("stock col-md-10 col-md-offset-1");
   //first - ticker
-  let elementTicker = $('<div>').addClass("tickerDiv col-md-2");
-  let elementLabelTicker = $('<label>').addClass("tickerText col-md-6").html('Ticker:');
-  let elementInputTicker = $('<input>').addClass("tickerInput col-md-6").attr('style','border:none;').attr('type','text').attr('name','ticker').attr('value','');
+  let elementTicker = $('<div>').addClass("tickerDiv col-md-2 col-md-offset-1");
+  let elementLabelTicker = $('<div>').addClass("tickerText visible-sm").html('Ticker:');
+  let elementInputTicker = $('<input>').addClass("tickerInput inOut col-md-12 col-sm-6").attr('style','border:none;').attr('type','text').attr('name','ticker').attr('value','');
 
   $(elementTicker).append(elementLabelTicker);
   $(elementTicker).append(elementInputTicker);
@@ -36,17 +38,17 @@ $('.addBtn').on('click',function(event){
 
   //second - allocation
   let elementPercent = $('<div>').addClass("allocationDiv percent col-md-2");
-  let elementLabelPercent = $('<label>').addClass("allocationText col-md-5").html('Allocation:');
-  let elementInputPercent = $('<input>').addClass("allocationVal col-md-4").attr('style','border:none;').attr('type','text').attr('name','percent').attr('value','0%');
+  let elementLabelPercent = $('<div>').addClass("allocationText visible-sm").html('Allocation:');
+  let elementInputPercent = $('<input>').addClass("allocationVal inOut col-md-12 col-sm-6").attr('style','border:none;').attr('type','text').attr('name','percent').attr('value','0%');
 
   $(elementPercent).append(elementLabelPercent);
   $(elementPercent).append(elementInputPercent);
   $(elementStock).append(elementPercent);
 
   //third  - current shares
-  let elementCurShar = $('<div>').addClass("currentSharesDiv col-md-3");
-  let elementLabelCurShar = $('<label>').addClass("currentSharesText col-md-8").html('Current shares:');
-  let elementInputCurShar = $('<input>').addClass("currentSharesInput col-md-3").attr('style','border:none;').attr('type','text').attr('name','currentShares').attr('value','0');
+  let elementCurShar = $('<div>').addClass("currentSharesDiv col-md-2");
+  let elementLabelCurShar = $('<div>').addClass("currentSharesText visible-sm").html('Current shares:');
+  let elementInputCurShar = $('<input>').addClass("currentSharesInput inOut col-md-12 col-sm-6").attr('style','border:none;').attr('type','text').attr('name','currentShares').attr('value','0');
 
   $(elementCurShar).append(elementLabelCurShar);
   $(elementCurShar).append(elementInputCurShar);
@@ -54,17 +56,17 @@ $('.addBtn').on('click',function(event){
 
   //fourth - price
   let elementPrice = $('<div>').addClass("priceDiv col-md-2");
-  let elementPriceText = $('<div>').addClass("priceText col-md-5").html("<strong>Price:</strong>");
-  let elementPriceInput = $('<div>').addClass("currentPriceOutput col-md-7").html('--');
+  let elementPriceText = $('<div>').addClass("priceText visible-sm").html("<strong>Price:</strong>");
+  let elementPriceInput = $('<div>').addClass("currentPriceOutput inOut col-md-12 col-sm-6").html('--');
 
   $(elementPrice).append(elementPriceText);
   $(elementPrice).append(elementPriceInput);
   $(elementStock).append(elementPrice);
 
   //fifth - recommended shares
-  let elementRecomShares = $('<div>').addClass("sharesDiv col-md-4");
-  let elementRecomSharesText = $('<div>').addClass("sharesText col-md-8").html("<strong>Recommended shares:</strong>");
-  let elementRecomSharesOutput = $('<div>').addClass("sharesOutput col-md-1").html('--');
+  let elementRecomShares = $('<div>').addClass("sharesDiv col-md-2");
+  let elementRecomSharesText = $('<div>').addClass("sharesText visible-sm").html("<strong>Recommended shares:</strong>");
+  let elementRecomSharesOutput = $('<div>').addClass("sharesOutput inOut col-md-12 col-sm-6").html('--');
 
   $(elementRecomShares).append(elementRecomSharesText);
   $(elementRecomShares).append(elementRecomSharesOutput);
@@ -89,6 +91,7 @@ $("form").submit(function( event ) {
   var tickers = inputObj.filter(function(obj){  //finds tickers from form data
     return obj['name'] == 'ticker';
   });
+  var symbols = [];
   var tempData = []; //takes parsed JSON data for action
   if (totalAllocation > 100) {
     window.alert("allocation cannot exceed 100%")
@@ -103,11 +106,11 @@ $("form").submit(function( event ) {
       }
     }
     Promise.all(financeRequests).then(function (results) {
-      console.log(results);
+      // console.log(results);
       //SET LOCAL STORAGE
       localStorage.setItem('data',JSON.stringify(results)); //local storage
       localData = JSON.parse(localStorage['data']);
-      console.log(localData);
+      // console.log(localData);
 
       for (i = 0; i < results.length; i++) { //extract price and ticker
 
@@ -125,6 +128,8 @@ $("form").submit(function( event ) {
         }
         var price = parseFloat(tempPrice.toFixed(2));
         tempData.push(price);
+
+        symbols.push(tempSymbol);
 
       }         // END PROMISE -> ACTIONS FROM HERE
       $('form').find('.currentPriceOutput').each(function (i) { //appends price to page
@@ -146,13 +151,45 @@ $("form").submit(function( event ) {
         currentSharesArr.push(parseFloat($(this).val()));
       });
 
+      var investedDollars = 0;
+      var deltas = [];
+
       $('form').find('.sharesOutput').each(function (i) { // share purchade recommendation
         var percentNum = parseFloat(percent[i].value)/100;
         let price = tempData[i];
         let dollarTarget = (totalInvestedDollars*percentNum)-(currentSharesArr[i]*price);
         shares = Math.max(Math.floor((dollarTarget)/price),0);
         $(this).html(shares);
+
+        let delta = 1-((shares*price)/dollarTarget); // get delta between dollars spent, and allocated dollars
+        let readySymbol = symbols[i]
+        deltas.push({[readySymbol]: delta})
+        investedDollars += (shares*price);
       });
+      var sortedDeltas = []
+
+      function sortDeltas () { // sort deltas highest to lowest
+        sortedDeltas = deltas.sort(function(a,b){
+          return deltas[a]-deltas[b];
+        });
+      }
+
+      sortDeltas();
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }); //END API CALL
   };

@@ -32,37 +32,47 @@
       </div>
     </nav>
 
-  <div class="container-fluid col-md-12">
+  <div class="container-fluid col-md-12 col-sm-12">
     <!--Investment $ input -->
     <div class="row dollars">
-      <div class="dollar_inv col-md-3 col-md-offset-6"><strong>How much are you investing today?</strong></div>
-      <input class="dollarInput col-md-1" style="border:none;" type="text" name="dollar_inv" value="100000" id="dollar_inv">
+      <div class="dollar_inv col-md-3 col-md-offset-6 col-sm-12"><strong>How much are you investing today?</strong></div>
+      <input class="dollarInput col-md-1 col-sm-6" style="border:none;" type="text" name="dollar_inv" value="100000" id="dollar_inv">
 
     </div>
       <!--Elements -->
       <form>
         <div class="elements">
-          <div class="row container-fluid">
-            <div class="stock col-md-10 col-md-offset-1">
-              <div class="tickerDiv col-md-2">
-                <label class="tickerText col-md-6">Ticker:</label>
-                <input class="tickerInput col-md-6" style="border:none;" type="text" name="ticker" value="aapl">
-              </div>
-              <div class="allocationDiv col-md-2">
-                <label class="allocationText col-md-5">Allocation:</label>
-                <input class="allocationVal col-md-4" style="border:none;" type="text" name="percent" value="50%">
-              </div>
-              <div class="currentSharesDiv col-md-3">
-                <label class="currentSharesText col-md-8">Current shares:</label>
-                <input class="currentSharesInput col-md-3" style="border:none;" type="text" name="currentShares" value="50">
-              </div>
-              <div class="priceDiv col-md-2">
-                <div class="priceText col-md-5"><strong>Price:</strong></div>
-                <div class="currentPriceOutput col-md-7">--</div>
-              </div>
-              <div class="sharesDiv col-md-4">
-                <div class="sharesText col-md-8"><strong>Recommended shares:</strong></div>
-                <div class="sharesOutput col-md-1">--</div>
+          <div class="row">
+            <div class="headerRow col-md-10 col-md-offset-1">
+              <div class="headerText col-md-2 col-md-offset-1 visible-md">Ticker</div>
+              <div class="headerText col-md-2">Allocation</div>
+              <div class="headerText col-md-2">Current Shares</div>
+              <div class="headerText col-md-2">Price</div>
+              <div class="headerText col-md-2">Recommended shares</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="stock col-md-10 col-md-offset-1 col-sm-12">
+                <div class="tickerDiv col-md-2 col-md-offset-1 col-sm-12">
+                  <div class="tickerText mobileActive col-sm-6">Ticker:</div>
+                  <input class="tickerInput inOut col-md-12 col-sm-6" style="border:none;" type="text" name="ticker" value="aapl">
+                </div>
+                <div class="allocationDiv col-md-2 col-sm-12">
+                  <div class="allocationText mobileActive col-sm-6">Allocation:</div>
+                  <input class="allocationVal inOut col-md-12 col-sm-6" style="border:none;" type="text" name="percent" value="50%">
+                </div>
+                <div class="currentSharesDiv col-md-2 col-sm-12">
+                  <div class="currentSharesText mobileActive col-sm-6">Current shares:</div>
+                  <input class="currentSharesInput inOut col-md-12 col-sm-6" style="border:none;" type="text" name="currentShares" value="50">
+                </div>
+                <div class="priceDiv col-md-2 col-sm-12">
+                  <div class="priceText mobileActive col-sm-6">Price:</div>
+                  <div class="currentPriceOutput inOut col-md-12 col-sm-6">--</div>
+                </div>
+                <div class="sharesDiv col-md-2 col-sm-12">
+                  <div class="sharesText mobileActive col-sm-6">Recommended shares:</div>
+                  <div class="sharesOutput inOut col-md-12 col-sm-6">--</div>
+                </div>
               </div>
             </div>
           </div>
@@ -70,20 +80,18 @@
         <!--END ELEMENTS-->
         <div class="row">
           <div class="totalRow col-md-10 col-md-offset-1">
-            <div class="totalAllocation col-md-2 col-md-offset-2"><strong>Total allocation:</strong>
+            <div class="totalAllocation col-md-2 col-md-offset-2 col-sm-6"><strong>Total allocation:</strong>
             </div>
-            <div class="totalAllocationPerc col-md-1">100%
-            </div>
-            <div class="submit col-md-1 col-md-offset-5">
+            <div class="totalAllocationPerc col-md-1 col-sm-12"></div>
+            <div class="submit col-md-1 col-md-offset-12">
               <input type="submit" name="a" value="Submit">
             </div>
           </div>
         </div>
       </form>
-    <div class="row">
-      <button type="button" class="addBtn btn btn-default col-md-offset-1">+</button>
-      <button type="button" class="remvBtn btn btn-default">-</button>
-    </div>
-    </div>
+      <div class="row">
+        <button type="button" class="addBtn btn btn-default col-md-offset-1">+</button>
+        <button type="button" class="remvBtn btn btn-default">-</button>
+      </div>
   </body>
 </html>
