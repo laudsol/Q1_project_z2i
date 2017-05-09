@@ -1,3 +1,15 @@
+/*COLORS*/
+.purpblu {
+  background-color: #313B74;
+}
+
+.teal {
+  background-color:#018B9E;
+}
+
+.blue {
+background-color: #1B638E;
+}
 /*Title row*/
 
 .headerText {
@@ -13,19 +25,21 @@
 /* ELEMENTS */
 
 .stock {
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-top: 15px;
   border: 1px black solid;
   height: flex;
-  float: left;
+  /*float: left;*/
 }
 
 .inOut{
-  margin-top: 10%;
-  margin-bottom: 10%;
-  width: flex;
   color: white;
-  background-color: green;
   text-align: center;
+}
+
+.mobileActive {
+  text-align: right;
 }
 
 @media screen and (min-width: 768px) {
@@ -36,9 +50,7 @@
 /*TOTAL row*/
 
 .totalAllocationPerc {
-  width: 65px;
   color: white;
-  background-color: green;
 }
 
 .totalRow {
@@ -50,7 +62,6 @@
 .dollarInput {
   width: 100px;
   color: white;
-  background-color: green;
 }
 
 .dollars {
@@ -60,12 +71,6 @@
 
 /*SPLASH page*/
 
-.panel {
-  height: 260px;
-  margin-left: 3.5%;
-  margin-right: 3.5%;
-}
-
 .panelHead {
   background-color:#1B638E;
   color: white;
@@ -74,29 +79,82 @@
 .portButton {
   background-color: #DF7420;
   color: white;
+  position: absolute;
+  bottom: 0;
 }
 
 .navbutton {
-  background-color: #102B50;
   border-radius: 10%;
   margin: 1%;
   color: white;
 }
 
-.hello1 {
-  background-color: #044AAA;
+.green {
+  background-color: green;
 }
 
-.hello2 {
-  background-color: #070BB4
-}
-.hello3 {
-  background-color:#018B9E
-}
-.hello4 {
-  background-color: #313B74
+.red {
+  background-color: red;
 }
 
-.hello5 {
-  background-color: #29556E
-  }
+a {
+  color: white;
+}
+
+a:hover {
+  color: #e89384;
+}
+
+.navTopText {
+  color: #ADA8AB;
+  font-size: 30px;
+  margin-top: 5px;
+}
+
+.navBotText {
+  color: #ADA8AB;
+}
+
+.panBox {
+  background-color: #A1AFAC;
+  height: 40vh;
+}
+
+.pans {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.ltblu {
+  background-color: #39D3FF;
+}
+
+.orange {
+  background-color: #FFBD6A;
+}
+
+.addBtn {
+  background-color: #76D08D;
+}
+
+.remvBtn {
+  background-color: #FD8F92;
+}
+
+.addRemvBtns {
+  margin-top: 6vh;
+  margin-bottom: 5vh;
+}
+
+.totalAllocation {
+  text-align: right;
+}
+
+.submitButton {
+  width: 100px;
+  background-color: #FFBD6A;
+}
+
+* {
+  border: 1px solid red;
+}

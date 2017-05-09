@@ -19,32 +19,31 @@
   </head>
   <body>
     <!--NAV BAR -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar purpblu">
       <div class="container-fluid">
-        <div class="navbar-header navbar-right">
-          <a class="navbar-brand" href="#">
+        <div class="text navbar-right">
+          <a class="navbar-brand navTopText"  href="index.html">
             zero-2-invested
           </a>
         </div>
         <ul class="nav nav-pills">
-          <li role="presentation" class="active"><a href="index.html">Home</a></li>
+          <li role="presentation" class="navbutton teal"><a href="index.html">Home</a></li>
         </ul>
       </div>
     </nav>
+    <div class="container-fluid mainBody">
+      <!--Investment $ input -->
+      <div class="row dollars">
+        <div class="dollar_inv col-md-3 col-md-offset-6 col-sm-12"><strong>How much are you investing today?</strong></div>
+        <input class="dollarInput ltblu col-md-1 col-sm-6" style="border:none;" type="text" name="dollar_inv" value="$100000" id="dollar_inv">
 
-  <div class="container-fluid col-md-12 col-sm-12">
-    <!--Investment $ input -->
-    <div class="row dollars">
-      <div class="dollar_inv col-md-3 col-md-offset-6 col-sm-12"><strong>How much are you investing today?</strong></div>
-      <input class="dollarInput col-md-1 col-sm-6" style="border:none;" type="text" name="dollar_inv" value="100000" id="dollar_inv">
-
-    </div>
-      <!--Elements -->
+      </div>
+        <!--Elements -->
       <form>
         <div class="elements">
           <div class="row">
             <div class="headerRow col-md-10 col-md-offset-1">
-              <div class="headerText col-md-2 col-md-offset-1 visible-md">Ticker</div>
+              <div class="headerText col-md-2 col-md-offset-1 visible-lg visible-md">Ticker</div>
               <div class="headerText col-md-2">Allocation</div>
               <div class="headerText col-md-2">Current Shares</div>
               <div class="headerText col-md-2">Price</div>
@@ -52,26 +51,37 @@
             </div>
           </div>
           <div class="row">
-            <div class="stock col-md-10 col-md-offset-1 col-sm-12">
-                <div class="tickerDiv col-md-2 col-md-offset-1 col-sm-12">
-                  <div class="tickerText mobileActive col-sm-6">Ticker:</div>
-                  <input class="tickerInput inOut col-md-12 col-sm-6" style="border:none;" type="text" name="ticker" value="aapl">
+            <div class="stock col-md-10 col-md-offset-1 col-xs-12">
+                  <div class="tickerDiv col-md-2 col-md-offset-1">
+                    <div class="tickerText mobileActive col-xs-6">Ticker:</div>
+                    <div class="col-md-12 col-xs-6">
+                      <input class="tickerInput col-md-12 inOut ltblu" style="border:none;" type="text" name="ticker" value="aapl">
+                    </div>
+                  </div>
+                <div class="allocationDiv col-md-2">
+                    <div class="allocationText mobileActive col-xs-6">Allocation:</div>
+                    <div class="col-md-12 col-xs-6">
+                      <input class="allocationVal col-md-12 inOut ltblu"
+                      style="border:none;" type="text" name="percent" value="50%">
+                    </div>
                 </div>
-                <div class="allocationDiv col-md-2 col-sm-12">
-                  <div class="allocationText mobileActive col-sm-6">Allocation:</div>
-                  <input class="allocationVal inOut col-md-12 col-sm-6" style="border:none;" type="text" name="percent" value="50%">
+                <div class="currentSharesDiv col-md-2">
+                  <div class="currentSharesText mobileActive col-xs-6">Current shares:</div>
+                  <div class="col-md-12 col-xs-6">
+                    <input class="currentSharesInput col-md-12 inOut ltblu" style="border:none;" type="text" name="currentShares" value="50">
+                  </div>
                 </div>
-                <div class="currentSharesDiv col-md-2 col-sm-12">
-                  <div class="currentSharesText mobileActive col-sm-6">Current shares:</div>
-                  <input class="currentSharesInput inOut col-md-12 col-sm-6" style="border:none;" type="text" name="currentShares" value="50">
+                <div class="priceDiv col-md-2">
+                  <div class="priceText mobileActive col-xs-6">Price:</div>
+                  <div class="col-md-12 col-xs-6">
+                    <input class="currentPriceOutput col-md-12 inOut orange" style="border:none;" value="--">
+                  </div>
                 </div>
-                <div class="priceDiv col-md-2 col-sm-12">
-                  <div class="priceText mobileActive col-sm-6">Price:</div>
-                  <div class="currentPriceOutput inOut col-md-12 col-sm-6">--</div>
-                </div>
-                <div class="sharesDiv col-md-2 col-sm-12">
-                  <div class="sharesText mobileActive col-sm-6">Recommended shares:</div>
-                  <div class="sharesOutput inOut col-md-12 col-sm-6">--</div>
+                <div class="sharesDiv col-md-2">
+                  <div class="sharesText mobileActive col-xs-6">Recommended shares:</div>
+                  <div class="col-md-12 col-xs-6">
+                    <input class="sharesOutput col-md-12 inOut orange" style="border:none;" value="--">
+                  </div>
                 </div>
               </div>
             </div>
@@ -80,18 +90,28 @@
         <!--END ELEMENTS-->
         <div class="row">
           <div class="totalRow col-md-10 col-md-offset-1">
-            <div class="totalAllocation col-md-2 col-md-offset-2 col-sm-6"><strong>Total allocation:</strong>
+            <div class="totalAllocation col-md-2 col-md-offset-1 col-sm-6"><strong>Total allocation:</strong>
             </div>
-            <div class="totalAllocationPerc col-md-1 col-sm-12"></div>
-            <div class="submit col-md-1 col-md-offset-12">
-              <input type="submit" name="a" value="Submit">
-            </div>
+            <div class="totalAllocationPerc ltblu col-md-2 col-sm-12 allocationVal"></div>
           </div>
         </div>
-      </form>
-      <div class="row">
-        <button type="button" class="addBtn btn btn-default col-md-offset-1">+</button>
-        <button type="button" class="remvBtn btn btn-default">-</button>
+      <!-- </form> -->
+      <div class="row addRemvBtns">
+        <div class="col-md-10 col-md-offset-1">
+          <button type="button" class="addBtn btn">+</button>
+          <button type="button" class="remvBtn btn">-</button>
+          <button class="btn submitButton" type="submit" value="Submit">submit</button>
+        </div>
       </div>
+    </div>
+      <!--NAV Bottom-->
+    <nav class="navbar purpblu navbar-bottom-fixed">
+      <div class="container-fluid">
+        <a href="index.html"><u>Home</u></a>
+        <br>
+        <br>
+        <div class="navbar-center navBotText">Created using the Yahoo Finance API</div>
+      </div>
+    </nav>
   </body>
 </html>
