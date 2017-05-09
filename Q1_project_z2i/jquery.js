@@ -147,7 +147,7 @@ $("form").submit(function( event ) {
 
       $('form').find('.currentSharesInput').each(function (i) {
         let targetDollars = parseFloat($(this).val())*tempData[i];
-        totalInvestedDollars += targetDollars;
+        totalInvestedDollars += (Math.min(1,tempData.length-1))*targetDollars;
         currentSharesArr.push(parseFloat($(this).val()));
       });
 
@@ -157,16 +157,18 @@ $("form").submit(function( event ) {
       $('form').find('.sharesOutput').each(function (i) { // share purchade recommendation
         var percentNum = parseFloat(percent[i].value)/100;
         let price = tempData[i];
-        let dollarTarget = (totalInvestedDollars*percentNum)-(currentSharesArr[i]*price);
+        let dollarTarget = (totalInvestedDollars*percentNum)-((Math.min(1,tempData.length-1))*(currentSharesArr[i]*price));
+
         shares = Math.max(Math.floor((dollarTarget)/price),0);
         $(this).html(shares);
 
         let delta = 1-((shares*price)/dollarTarget); // get delta between dollars spent, and allocated dollars
         let readySymbol = symbols[i]
-        deltas.push({[readySymbol]: delta})
+        deltas.push({symbol: readySymbol, delta: delta, price: price})
         investedDollars += (shares*price);
       });
-      var sortedDeltas = []
+      var unallocatedDollars = (investment*(totalAllocation/100)) - investedDollars;
+      var sortedDeltas = [];
 
       function sortDeltas () { // sort deltas highest to lowest
         sortedDeltas = deltas.sort(function(a,b){
@@ -176,21 +178,18 @@ $("form").submit(function( event ) {
 
       sortDeltas();
 
-      
+      function incrementalBuy () {
+        for (i = 0; i<sortedDeltas.length; i++) {
+          if (unallocatedDollars > 0 && sortedDeltas[i].price <= unallocatedDollars) {
+            console.log(true);
+            $('form').find('.stock').each(function (i) {
+              console.log($('.tickerInput'));
+            });
+          }
+        }
+      }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+      // incrementalBuy();
     }); //END API CALL
   };
 });
