@@ -89,14 +89,6 @@ background-color: #1B638E;
   color: white;
 }
 
-.green {
-  background-color: green;
-}
-
-.red {
-  background-color: red;
-}
-
 a {
   color: white;
 }
@@ -135,10 +127,12 @@ a:hover {
 
 .addBtn {
   background-color: #76D08D;
+  width: 40px;
 }
 
 .remvBtn {
   background-color: #FD8F92;
+  width: 40px;
 }
 
 .addRemvBtns {
@@ -156,5 +150,5 @@ a:hover {
 }
 
 * {
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
