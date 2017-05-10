@@ -46,7 +46,7 @@ $("form").on('input',$('.allocationVal'), function (event) { // listener for per
 
 $('.addBtn').on('click',function(event){
   //Primary elements
-  let elementRow = $('<div>').addClass("row");
+  let elementRow = $('<div>').addClass("row stuff");
   let elementStock = $('<div>').addClass("stock col-md-10 col-md-offset-1 col-xs-12");
   //first - ticker
   let elementTicker = $('<div>').addClass("tickerDiv col-md-2 col-md-offset-1");
@@ -85,7 +85,7 @@ $('.addBtn').on('click',function(event){
   let elementPrice = $('<div>').addClass("priceDiv col-md-2");
   let elementPriceText = $('<div>').addClass("priceText mobileActive col-xs-6").html("Price:");
   let elementBoxPrice = $('<div>').addClass("col-md-12 col-xs-6");
-  let elementPriceInput = $('<input>').addClass("currentPriceOutput col-md-12 inOut orange").attr('style','border:none').attr('value','--');
+  let elementPriceInput = $('<input>').addClass("currentPriceOutput col-md-12 inOut grayText orange").attr('style','border:none').attr('value','--');
 
   $(elementPrice).append(elementPriceText);
   $(elementBoxPrice).append(elementPriceInput);
@@ -96,7 +96,7 @@ $('.addBtn').on('click',function(event){
   let elementRecomShares = $('<div>').addClass("sharesDiv col-md-2");
   let elementRecomSharesText = $('<div>').addClass("sharesText mobileActive col-xs-6").html("Recommended shares:");
   let elementBoxRcomShares = $('<div>').addClass("col-md-12 col-xs-6");
-  let elementRecomSharesOutput = $('<input>').addClass("sharesOutput col-md-12 inOut orange").attr('style', 'border:none').attr('value','--');
+  let elementRecomSharesOutput = $('<input>').addClass("sharesOutput col-md-12 inOut grayText orange").attr('style', 'border:none').attr('value','--');
   $(elementRecomShares).append(elementRecomSharesText);
   $(elementBoxRcomShares).append(elementRecomSharesOutput)
   $(elementRecomShares).append(elementBoxRcomShares);
@@ -104,7 +104,7 @@ $('.addBtn').on('click',function(event){
 
   // append all to form
   $(elementRow).append(elementStock);
-  $('.elements').append(elementRow);
+  $('.stuff').last().append(elementRow);
 });
 
 $('.remvBtn').on('click',function(event){
@@ -162,9 +162,13 @@ $("form").submit(function( event ) {
         symbols.push(tempSymbol);
 
       }         // END PROMISE -> ACTIONS FROM HERE
-      $('form').find('.currentPriceOutput').each(function (i) { //appends price to page
+
+      // APPEND PRICE TO PAGE =======================
+      $('form').find('.currentPriceOutput').each(function (i) {
         $(this).val("$"+tempData[i]);
       });
+
+      //
 
       var invInput = $("#dollar_inv").val();
 
@@ -190,7 +194,7 @@ $("form").submit(function( event ) {
       var investedDollars = 0;
       var deltas = [];
 
-      $('form').find('.sharesOutput').each(function (i) { // share purchade recommendation
+      $('form').find('.sharesOutput').each(function (i) { // share purchase recommendation
         var percentNum = parseFloat(percent[i].value)/100;
         let price = tempData[i];
         let dollarTarget = (totalInvestedDollars*percentNum)-((Math.min(1,tempData.length-1))*(currentSharesArr[i]*price));
@@ -200,7 +204,7 @@ $("form").submit(function( event ) {
 
         let delta = 1-((shares*price)/dollarTarget); // get delta between dollars spent, and allocated dollars
         let readySymbol = symbols[i]
-        deltas.push({symbol: readySymbol, delta: delta, price: price})
+        deltas.push({symbol: readySymbol, delta: delta, price: price, shares:shares})
         investedDollars += (shares*price);
       });
       var unallocatedDollars = (investment*(totalAllocation/100)) - investedDollars;
@@ -219,15 +223,14 @@ $("form").submit(function( event ) {
       function incrementalBuy () {
         for (i = 0; i<sortedDeltas.length; i++) {
           if (unallocatedDollars > 0 && sortedDeltas[i].price <= unallocatedDollars) {
-            console.log(true);
+            // console.log(true);
             $('form').find('.stock').each(function (i) {
               console.log($('.tickerInput'));
             });
           }
         }
       }
-
-      // incrementalBuy();
+      incrementalBuy();
     }); //END API CALL
   };
 });

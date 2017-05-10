@@ -58,7 +58,6 @@ background-color: #1B638E;
 /*TOTAL row*/
 
 .totalAllocationPerc {
-  background-color:
   color: white;
   text-align: center;
 }
@@ -215,4 +214,12 @@ h2 {
 
 .yellow {
   background-color: #FCFF35;
+}
+
+.grayText {
+color: #2D2D2D;
+}
+
+.elements {
+  border: 1px solid red;
 }

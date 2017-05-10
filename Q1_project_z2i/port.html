@@ -38,79 +38,110 @@
         <input class="dollarInput ltblu col-md-1 col-xs-6" style="border:none;" type="text" name="dollar_inv" value="$100000" id="dollar_inv">
       </div>
       <br>
-        <!--Elements -->
       <form>
-        <div class="elements">
-          <div class="row">
-            <div class="headerRow col-md-10 col-md-offset-1">
-              <div class="headerText col-md-2 col-md-offset-1 visible-lg visible-md" data-container="body" data-toggle="popover" data-placement="bottom" data-content="This is the 'traded name' of the fund or stock you are purchasing.">Ticker
-              </div>
-              <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="The percentage of your portfolio you want this fund/stock to comprise.">Allocation
-              </div>
-              <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Enter the amount of shares you currently own. This will help with allocation.">Current Shares
-              </div>
-              <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="A stocks/funds price per share. This number is appoximate and may differ by a few cents when you place your order.">Price
-              </div>
-              <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="The number of shares zero-2-invest suggests you purchase for this portfolio.">Recommended shares
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="stock col-md-10 col-md-offset-1 col-xs-12">
-                  <div class="tickerDiv col-md-2 col-md-offset-1">
-                    <div class="tickerText mobileActive col-xs-6">Ticker:</div>
-                    <div class="col-md-12 col-xs-6">
-                      <input class="tickerInput col-md-12 inOut ltblu" style="border:none;" type="text" name="ticker" value="aapl">
-                    </div>
-                  </div>
-                <div class="allocationDiv col-md-2">
-                    <div class="allocationText mobileActive col-xs-6">Allocation:</div>
-                    <div class="col-md-12 col-xs-6">
-                      <input class="allocationVal col-md-12 inOut ltblu"
-                      style="border:none;" type="text" name="percent" value="50%">
-                    </div>
-                </div>
-                <div class="currentSharesDiv col-md-2">
-                  <div class="currentSharesText mobileActive col-xs-6">Current shares:</div>
-                  <div class="col-md-12 col-xs-6">
-                    <input class="currentSharesInput col-md-12 inOut ltblu" style="border:none;" type="text" name="currentShares" value="50">
-                  </div>
-                </div>
-                <div class="priceDiv col-md-2">
-                  <div class="priceText mobileActive col-xs-6">Price:</div>
-                  <div class="col-md-12 col-xs-6">
-                    <input class="currentPriceOutput col-md-12 inOut orange" style="border:none;" value="--">
-                  </div>
-                </div>
-                <div class="sharesDiv col-md-2">
-                  <div class="sharesText mobileActive col-xs-6">Recommended shares:</div>
-                  <div class="col-md-12 col-xs-6">
-                    <input class="sharesOutput col-md-12 inOut orange" style="border:none;" value="--">
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="row">
+          <div class="headerRow col-md-10 col-md-offset-1">
+            <div class="headerText col-md-2 col-md-offset-1 visible-lg visible-md" data-container="body" data-toggle="popover" data-placement="bottom" data-content="This is the 'traded name' of the fund or stock you are purchasing.">Ticker</div>
+            <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="The percentage of your portfolio you want this fund/stock to comprise.">Allocation</div>
+            <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Enter the amount of shares you currently own. This will help with allocation.">Current Shares</div>
+            <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="A stocks/funds price per share. This number is appoximate and may differ by a few cents when you place your order.">Price</div>
+            <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="The number of shares zero-2-invest suggests you purchase for this portfolio.">Recommended shares</div>
           </div>
         </div>
-        <!--END ELEMENTS-->
+
+        <div class="elements">
+          <!--Elements -->
+          <div class="row stuff">
+            <div class="stock col-md-10 col-md-offset-1 col-xs-12">
+              <div class="tickerDiv col-md-2 col-md-offset-1">
+                <div class="tickerText mobileActive col-xs-6">Ticker:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="tickerInput col-md-12 inOut ltblu" style="border:none;" type="text" name="ticker" value="aapl">
+                </div>
+              </div>
+              <div class="allocationDiv col-md-2">
+                <div class="allocationText mobileActive col-xs-6">Allocation:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="allocationVal col-md-12 inOut ltblu"
+                  style="border:none;" type="text" name="percent" value="50%">
+                </div>
+              </div>
+              <div class="currentSharesDiv col-md-2">
+                <div class="currentSharesText mobileActive col-xs-6">Current shares:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="currentSharesInput col-md-12 inOut ltblu" style="border:none;" type="text" name="currentShares" value="50">
+                </div>
+              </div>
+              <div class="priceDiv col-md-2">
+                <div class="priceText mobileActive col-xs-6">Price:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="currentPriceOutput col-md-12 inOut grayText orange" style="border:none;" value="--">
+                </div>
+              </div>
+              <div class="sharesDiv col-md-2">
+                <div class="sharesText mobileActive col-xs-6">Recommended shares:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="sharesOutput col-md-12 inOut  grayText orange" style="border:none;" value="--">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row stuff">
+            <div class="stock col-md-10 col-md-offset-1 col-xs-12">
+              <div class="tickerDiv col-md-2 col-md-offset-1">
+                <div class="tickerText mobileActive col-xs-6">Ticker:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="tickerInput col-md-12 inOut ltblu" style="border:none;" type="text" name="ticker" value="aapl">
+                </div>
+              </div>
+              <div class="allocationDiv col-md-2">
+                <div class="allocationText mobileActive col-xs-6">Allocation:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="allocationVal col-md-12 inOut ltblu"
+                  style="border:none;" type="text" name="percent" value="50%">
+                </div>
+              </div>
+              <div class="currentSharesDiv col-md-2">
+                <div class="currentSharesText mobileActive col-xs-6">Current shares:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="currentSharesInput col-md-12 inOut ltblu" style="border:none;" type="text" name="currentShares" value="50">
+                </div>
+              </div>
+              <div class="priceDiv col-md-2">
+                <div class="priceText mobileActive col-xs-6">Price:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="currentPriceOutput col-md-12 inOut grayText orange" style="border:none;" value="--">
+                </div>
+              </div>
+              <div class="sharesDiv col-md-2">
+                <div class="sharesText mobileActive col-xs-6">Recommended shares:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="sharesOutput col-md-12 inOut  grayText orange" style="border:none;" value="--">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--END ELEMENTS-->
+        </div>
         <div class="row">
           <div class="totalRow col-md-10 col-md-offset-1 col-xs-12">
             <div class="totalAllocation col-md-2 col-md-offset-1 col-xs-6 heroText"><strong>Total allocation:</strong>
             </div>
-            <div class="totalAllocationPerc ltblu col-md-2 col-xs-5 allocationVal"></div>
+            <div class="totalAllocationPerc teal col-md-2 col-xs-5 allocationVal"></div>
           </div>
         </div>
-      <br>
-      <div class="row addRemvBtns">
-        <div class="col-md-10 col-md-offset-1 col-xs-12">
-          <p class="col-md-2 col-xs-4 addRmvText">Add or remove:</p>
-          <div class="col-md-2 col-xs-4">
-            <button type="button" class="addBtn btn col-md-4 col-xs-4">+</button>
-            <button type="button" class="remvBtn btn col-md-4  col-md-offset-1 col-xs-4 col-xs-offset-1">-</button>
+        <br>
+        <div class="row addRemvBtns">
+          <div class="col-md-10 col-md-offset-1 col-xs-12">
+            <p class="col-md-2 col-xs-4 addRmvText">Add or remove:</p>
+            <div class="col-md-2 col-xs-4">
+              <button type="button" class="addBtn btn col-md-4 col-xs-4">+</button>
+              <button type="button" class="remvBtn btn col-md-4  col-md-offset-1 col-xs-4 col-xs-offset-1">-</button>
+            </div>
+            <button class="btn submitButton col-md-3 col-md-offset-6 col-xs-6 col-xs-offset-1" type="submit" value="Submit">submit</button>
           </div>
-          <button class="btn submitButton col-md-3 col-md-offset-6 col-xs-6 col-xs-offset-1" type="submit" value="Submit">submit</button>
         </div>
-      </div>
+      </form>
     </div>
       <!--NAV Bottom-->
     <nav class="navbar purpblu navbar-bottom-fixed">
