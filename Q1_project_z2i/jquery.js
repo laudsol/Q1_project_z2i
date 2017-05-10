@@ -22,7 +22,6 @@ function updatePercent (event) { // update total percent
   });
   $('.totalAllocationPerc').html(totalPercent+"%");
 
-
   // function colorChange (totalPercent) {
   //   if (totalPercent < 80) {
   //     $('.totalAllocationPerc').addClass('yellow');
@@ -36,7 +35,6 @@ function updatePercent (event) { // update total percent
   // }
   // colorChange(totalPercent);
 };
-
 
 updatePercent();
 
@@ -104,11 +102,11 @@ $('.addBtn').on('click',function(event){
 
   // append all to form
   $(elementRow).append(elementStock);
-  $('.stuff').last().append(elementRow);
+  $('.elements').append(elementRow);
 });
 
 $('.remvBtn').on('click',function(event){
-  $('.stock').last().remove();
+  $('.stuff').last().remove();
   updatePercent();
 });
 
