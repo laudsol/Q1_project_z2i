@@ -42,7 +42,7 @@ $("form").on('input',$('.allocationVal'), function (event) { // listener for per
   updatePercent();
 });
 
-$('.addBtn').on('click',function(event){
+function addStockElement(event) {
   //Primary elements
   let elementRow = $('<div>').addClass("row stuff");
   let elementStock = $('<div>').addClass("stock col-md-10 col-md-offset-1 col-xs-12");
@@ -103,12 +103,48 @@ $('.addBtn').on('click',function(event){
   // append all to form
   $(elementRow).append(elementStock);
   $('.elements').append(elementRow);
+}
+
+$('.addBtn').on('click',function(event){
+  addStockElement();
 });
 
 $('.remvBtn').on('click',function(event){
   $('.stuff').last().remove();
   updatePercent();
 });
+
+var portfolioDef = [{ticker:'aapl', percent: '50%'},{ticker:'googl', percent: '20%'},{ticker:'ge', percent: '30%'}];
+
+var portfolioReg = [{ticker:'ge', percent: '50%'},{ticker:'jpm', percent: '20%'},{ticker:'dva', percent: '30%'}];
+
+var portfolioAgg = [{ticker:'appl', percent: '50%'},{ticker:'googl', percent: '20%'},{ticker:'ge', percent: '30%'}];
+
+function magic (portfolio) {
+  for (i=0; i<portfolio.length; i++) {
+    addStockElement();
+  }
+  $('.elements').find('.tickerInput').each(function (i) {
+    let tempTicker = portfolio[i].ticker;
+    $(this).val(tempTicker);
+  });
+
+  $('.elements').find('.allocationVal').each(function (i) {
+    let tempTicker = portfolio[i].percent;
+    $(this).val(tempTicker);
+  });
+}
+
+if ($('form').find('.portfolioDef').length > 0) {
+  magic(portfolioDef);
+} else if ($('form').find('.portfolioReg').length > 0) {
+  magic(portfolioReg);
+} else if ($('form').find('.portfolioAgg').length > 0) {
+  magic(portfolioAgg);
+}
+
+
+
 
 myStorage = localStorage;
 localData = JSON.parse(localStorage['data']);
@@ -223,7 +259,7 @@ $("form").submit(function( event ) {
           if (unallocatedDollars > 0 && sortedDeltas[i].price <= unallocatedDollars) {
             // console.log(true);
             $('form').find('.stock').each(function (i) {
-              console.log($('.tickerInput'));
+              // console.log($('.tickerInput'));
             });
           }
         }
