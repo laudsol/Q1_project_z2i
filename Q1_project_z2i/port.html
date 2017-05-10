@@ -34,10 +34,10 @@
     <div class="container-fluid mainBody">
       <!--Investment $ input -->
       <div class="row dollars">
-        <div class="dollar_inv col-md-3 col-md-offset-6 col-sm-12"><strong>How much are you investing today?</strong></div>
+        <div class="dollar_inv col-md-3 col-md-offset-6 col-sm-12 heroText"><strong>How much are you investing today?</strong></div>
         <input class="dollarInput ltblu col-md-1 col-sm-6" style="border:none;" type="text" name="dollar_inv" value="$100000" id="dollar_inv">
-
       </div>
+      <br>
         <!--Elements -->
       <form>
         <div class="elements">
@@ -90,19 +90,20 @@
         <!--END ELEMENTS-->
         <div class="row">
           <div class="totalRow col-md-10 col-md-offset-1 col-xs-12">
-            <div class="totalAllocation col-md-2 col-md-offset-1 col-xs-6"><strong>Total allocation:</strong>
+            <div class="totalAllocation col-md-2 col-md-offset-1 col-xs-6 heroText"><strong>Total allocation:</strong>
             </div>
             <div class="totalAllocationPerc ltblu col-md-2 col-xs-5 allocationVal"></div>
           </div>
         </div>
-      <!-- </form> -->
+      <br>
       <div class="row addRemvBtns">
         <div class="col-md-10 col-md-offset-1 col-xs-12">
-          <div class="col-md-3 col-md-offset-1 col-xs-5 col-xs-offset-1">
-            <button type="button" class="addBtn btn col-md-4">+</button>
-            <button type="button" class="remvBtn btn col-md-4   col-md-offset-1">-</button>
+          <p class="col-md-2 col-xs-4 addRmvText">Add or remove:</p>
+          <div class="col-md-2 col-xs-4">
+            <button type="button" class="addBtn btn col-md-4 col-xs-4">+</button>
+            <button type="button" class="remvBtn btn col-md-4  col-md-offset-1 col-xs-4 col-xs-offset-1">-</button>
           </div>
-          <button class="btn submitButton col-md-3 col-md-offset-5 col-xs-6" type="submit" value="Submit">submit</button>
+          <button class="btn submitButton col-md-3 col-md-offset-6 col-xs-6 col-xs-offset-1" type="submit" value="Submit">submit</button>
         </div>
       </div>
     </div>

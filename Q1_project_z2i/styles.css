@@ -14,6 +14,7 @@ background-color: #1B638E;
 
 .headerText {
   text-align: center;
+  color: #313B74;
 }
 
 @media screen and (max-width: 768px) {
@@ -28,7 +29,7 @@ background-color: #1B638E;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-top: 15px;
-  border: 1px black solid;
+  border: 1px #313B74 solid;
   height: flex;
   /*float: left;*/
 }
@@ -72,15 +73,15 @@ background-color: #1B638E;
 /*SPLASH page*/
 
 .panelHead {
-  background-color:#1B638E;
+  background-color: #313B74;
   color: white;
 }
 
 .portButton {
-  background-color: #DF7420;
-  color: white;
-  position: absolute;
-  bottom: 0;
+  background-color: #FFBD6A;
+  color: #2D2D2D;
+  /*position: absolute;*/
+  /*bottom: 0;*/
 }
 
 .navbutton {
@@ -108,8 +109,17 @@ a:hover {
 }
 
 .panBox {
-  background-color: #A1AFAC;
-  height: 40vh;
+  background-color: #39D3FF;
+  /*border: 1px gray solid;*/
+  height: 35vh;
+  border-radius: 2%;
+  overflow: hidden;
+}
+
+.buttonBox{
+  position: absolute;
+  bottom: 0;
+  text-align: center;
 }
 
 .pans {
@@ -147,8 +157,37 @@ a:hover {
 .submitButton {
   width: 100px;
   background-color: #FFBD6A;
+  color: #2D2D2D
+}
+
+.jumbBox {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+h2 {
+  color: #018B9E;
+}
+
+.heroText {
+  color: #313B74;
 }
 
 * {
   /*border: 1px solid red;*/
+}
+
+.panel-body {
+  color: #313B74
+}
+
+.startText {
+  text-align: center;
+}
+
+.addRmvText{
+  font-weight: bold;
+  color: #313B74;
+  padding-top: 6px;
+  text-align: right;
 }
