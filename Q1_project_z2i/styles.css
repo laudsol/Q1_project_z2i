@@ -14,6 +14,7 @@ background-color: #1B638E;
 
 .headerText {
   text-align: center;
+  vertical-align: bottom;
   color: #313B74;
 }
 
@@ -39,6 +40,12 @@ background-color: #1B638E;
   text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+  .inOut {
+    margin-bottom: 5px;
+  }
+}
+
 .mobileActive {
   text-align: right;
 }
@@ -51,7 +58,9 @@ background-color: #1B638E;
 /*TOTAL row*/
 
 .totalAllocationPerc {
+  background-color:
   color: white;
+  text-align: center;
 }
 
 .totalRow {
@@ -190,4 +199,20 @@ h2 {
   color: #313B74;
   padding-top: 6px;
   text-align: right;
+}
+
+.dollar_inv {
+  text-align: right;
+}
+
+.green {
+  background-color: #76D08D;
+}
+
+.red {
+  background-color: #FD8F92;
+}
+
+.yellow {
+  background-color: #FCFF35;
 }

@@ -1,3 +1,10 @@
+$('.headerText').popover({
+  placement: 'bottom',
+  container: 'body',
+  html: true,
+  trigger: 'hover',
+});
+
 var totalAllocation = 100;
 
 function updatePercent (event) { // update total percent
@@ -14,6 +21,20 @@ function updatePercent (event) { // update total percent
     totalAllocation = totalPercent;
   });
   $('.totalAllocationPerc').html(totalPercent+"%");
+
+
+  // function colorChange (totalPercent) {
+  //   if (totalPercent < 80) {
+  //     $('.totalAllocationPerc').addClass('yellow');
+  //   }
+  //   else if (totalPercent > 80 && totalPercent <= 100) {
+  //     $('.totalAllocationPerc').addClass('green');
+  //   }
+  //   else if (totalPercent > 100) {
+  //     $('.totalAllocationPerc').addClass('red');
+  //   }
+  // }
+  // colorChange(totalPercent);
 };
 
 
@@ -192,6 +213,8 @@ $("form").submit(function( event ) {
       }
 
       sortDeltas();
+
+      console.log(sortedDeltas);
 
       function incrementalBuy () {
         for (i = 0; i<sortedDeltas.length; i++) {
