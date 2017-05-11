@@ -251,6 +251,11 @@ color: #2D2D2D;
   border-radius: 0;
 }
 
+/*.bottom {
+  position: absolute;
+  bottom: 0;
+}*/
+
 .discBox {
   border: 1px solid #2D2D2D;
   background-color: #39D3FF;
