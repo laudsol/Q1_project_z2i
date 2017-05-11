@@ -1,5 +1,5 @@
 
-//  Adding stock elements
+//  Adding fund/stock elements to portfolio page
 
 function addStockElement(event) {
   //Primary elements
@@ -114,7 +114,6 @@ $('.headerText').popover({
 });
 
 
-
 // Total allocation
 
 var totalAllocation = 100;
@@ -133,19 +132,6 @@ function updatePercent (event) { // update total percent
     totalAllocation = totalPercent;
   });
   $('.totalAllocationPerc').html(totalPercent+"%");
-
-  // function colorChange (totalPercent) {
-  //   if (totalPercent < 80) {
-  //     $('.totalAllocationPerc').addClass('yellow');
-  //   }
-  //   else if (totalPercent > 80 && totalPercent <= 100) {
-  //     $('.totalAllocationPerc').addClass('green');
-  //   }
-  //   else if (totalPercent > 100) {
-  //     $('.totalAllocationPerc').addClass('red');
-  //   }
-  // }
-  // colorChange(totalPercent);
 };
 
 updatePercent();
@@ -243,11 +229,14 @@ $("form").submit(function( event ) {
 
       var investedDollars = 0;
       var deltas = [];
+      var allPrices = [];
 
       $('form').find('.sharesOutput').each(function (i) { // share purchase recommendation
         var percentNum = parseFloat(percent[i].value)/100;
         let price = tempData[i];
         let dollarTarget = (totalInvestedDollars*percentNum)-((Math.min(1,tempData.length-1))*(currentSharesArr[i]*price));
+
+        allPrices.push(price);
 
         shares = Math.max(Math.floor((dollarTarget)/price),0);
         $(this).val(shares);
@@ -268,19 +257,45 @@ $("form").submit(function( event ) {
 
       sortDeltas();
 
-      console.log(sortedDeltas);
+      // console.log(sortedDeltas);
 
       function incrementalBuy () {
         for (i = 0; i<sortedDeltas.length; i++) {
-          if (unallocatedDollars > 0 && sortedDeltas[i].price <= unallocatedDollars) {
-            // console.log(true);
-            $('form').find('.stock').each(function (i) {
-              // console.log($('.tickerInput'));
-            });
-          }
+          // console.log(unallocatedDollars);
+          if (unallocatedDollars > 0 && sortedDeltas[i].price <= unallocatedDollars){
+            sortedDeltas[i].shares += 1;
+            unallocatedDollars -= sortedDeltas[i].price;
+            // console.log(sortedDeltas[i].shares);
+          };
         }
       }
-      incrementalBuy();
+
+      var minPrice = allPrices[0];
+
+      for (i=0; i<allPrices.length; i++) {
+        if(minPrice > allPrices[i]) {
+          minPrice = allPrices[i];
+        }
+      }
+
+      function allocateRemainingDollars () {
+        if (unallocatedDollars > 0 && unallocatedDollars > minPrice) {
+        incrementalBuy();
+        }
+      }
+
+    allocateRemainingDollars();
+
+    console.log(deltas);
+
+    $('form').find('.stock').each(function (j) {
+      for(i = 0; i<sortedDeltas.length; i++) {
+        if (sortedDeltas[i].symbol == $(this).find('.tickerInput').val()) {
+          $(this).find('.sharesOutput').val(sortedDeltas[i].shares);
+        }
+      }
+    });
+
     }); //END API CALL
   };
 });
