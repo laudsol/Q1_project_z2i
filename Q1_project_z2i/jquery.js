@@ -1,3 +1,14 @@
+// dummy price data
+
+const dummyReg = [[{close: '123.01'}],[{close: '40.81'}],[{close: '49.75'}],[{close: '21.53'}],[{close: '81.11'}],[{close: '54.19'}]];
+
+const dummyDef = [[{close: '81.11'}],[{close: '54.19'}],[{close: '25.06'}],[{close: '91.83'}],[{close: '15.03'}],[{close: '39.71'}],[{close: '123.01'}],[{close: '40.81'}]];
+
+const dummyAgg = [[{close: '110.91'}],[{close: '123.01'}],[{close: '40.81'}],[{close: '106.71'}],[{close: '49.75'}],[{close: '29.24'}],[{close: '88.01'}],[{close: '24.83'}],[{close: '18.57'}],[{close: '21.53'}],[{close: '24.74'}]];
+
+const dummyCust = [[{close: '153.95'}],[{close: '955.89'}]]
+
+resultsD = ''
 
 //  Adding fund/stock elements to portfolio page
 
@@ -98,10 +109,15 @@ function magic (portfolio) {
 
 if ($('form').find('.portfolioDef').length > 0) {
   magic(portfolioDef);
+  resultsD = dummyDef;
 } else if ($('form').find('.portfolioReg').length > 0) {
   magic(portfolioReg);
+  resultsD = dummyReg;
 } else if ($('form').find('.portfolioAgg').length > 0) {
   magic(portfolioAgg);
+  resultsD = dummyAgg;
+} else if ($('form').find('.portfolioCust').length > 0) {
+  resultsD = dummyCust;
 }
 
 // Popover
@@ -164,23 +180,25 @@ $("form").submit(function( event ) {
     return false;
   } else {
     event.preventDefault();
-    var financeRequests = [];
-    for (var key in tickers) {
-      let ticker = tickers[key].value;
-      if (ticker !== "") {
-        financeRequests.push($.getJSON('http://www.enclout.com/api/yahoo_finance/show.json?auth_token=xxxxxx&text='+ticker));
-      }
-    }
-    Promise.all(financeRequests).then(function (results) {
+    // var financeRequests = [];
+    // for (var key in tickers) {
+    //   let ticker = tickers[key].value;
+    //   if (ticker !== "") {
+    //     financeRequests.push($.getJSON('http://www.enclout.com/api/yahoo_finance/show.json?auth_token=xxxxxx&text='+ticker));
+    //   }
+    // }
+    // Promise.all(financeRequests).then(function (results) {
       // console.log(results);
       //SET LOCAL STORAGE
       // localStorage.setItem('data',JSON.stringify(results)); //local storage
       // localData = JSON.parse(localStorage['data']);
       // console.log(localData);
 
-      for (i = 0; i < results.length; i++) { //extract price and ticker
 
-        var tempObj = results[i][0];
+
+      for (i = 0; i < resultsD.length; i++) { //extract price and ticker
+
+        var tempObj = resultsD[i][0];
         var tempSymbol = tempObj.symbol;
         var tempBid =  parseFloat(tempObj.bid);
         var tempAsk =  parseFloat(tempObj.ask);
@@ -296,6 +314,6 @@ $("form").submit(function( event ) {
       }
     });
 
-    }); //END API CALL
+    // }); //END API CALL
   };
 });
