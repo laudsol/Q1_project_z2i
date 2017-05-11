@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>portfolio</title>
+    <script defer src="jQuery.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link type="text/css" href="styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <!--NAV BAR -->
+    <nav class="navbar purpblu">
+      <div class="container-fluid">
+        <div class="text navbar-right">
+          <a class="navbar-brand navTopText"  href="index.html">
+            zero-2-invested
+          </a>
+        </div>
+        <ul class="nav nav-pills">
+          <li role="presentation" class="navbutton teal"><a href="index.html">Home</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid mainBody">
+      <!--Investment $ input -->
+      <div class="row dollars">
+        <div class="dollar_inv col-md-3 col-md-offset-6 col-xs-6 heroText"><strong>How much are you investing today?</strong></div>
+        <input class="dollarInput ltblu col-md-1 col-xs-6" style="border:none;" type="text" name="dollar_inv" value="$100000" id="dollar_inv">
+      </div>
+      <br>
+      <form>
+        <div class="row">
+          <div class="headerRow col-md-10 col-md-offset-1">
+            <div class="headerText col-md-2 col-md-offset-1 visible-lg visible-md" data-container="body" data-toggle="popover" data-placement="bottom" data-content="This is the 'traded name' of the fund or stock you are purchasing.">Ticker</div>
+            <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="The percentage of your portfolio you want this fund/stock to comprise.">Allocation</div>
+            <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Enter the amount of shares you currently own. This will help with allocation.">Current Shares</div>
+            <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="A stocks/funds price per share. This number is appoximate and may differ by a few cents when you place your order.">Price</div>
+            <div class="headerText col-md-2" data-container="body" data-toggle="popover" data-placement="bottom" data-content="The number of shares zero-2-invest suggests you purchase for this portfolio.">Recommended shares</div>
+          </div>
+        </div>
+
+        <div class="elements portfolioDef">
+          <!--Elements -->
+          <!-- <div class="row stuff">
+            <div class="stock col-md-10 col-md-offset-1 col-xs-12">
+              <div class="tickerDiv col-md-2 col-md-offset-1">
+                <div class="tickerText mobileActive col-xs-6">Ticker:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="tickerInput col-md-12 inOut ltblu" style="border:none;" type="text" name="ticker" value="aapl">
+                </div>
+              </div>
+              <div class="allocationDiv col-md-2">
+                <div class="allocationText mobileActive col-xs-6">Allocation:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="allocationVal col-md-12 inOut ltblu"
+                  style="border:none;" type="text" name="percent" value="50%">
+                </div>
+              </div>
+              <div class="currentSharesDiv col-md-2">
+                <div class="currentSharesText mobileActive col-xs-6">Current shares:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="currentSharesInput col-md-12 inOut ltblu" style="border:none;" type="text" name="currentShares" value="50">
+                </div>
+              </div>
+              <div class="priceDiv col-md-2">
+                <div class="priceText mobileActive col-xs-6">Price:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="currentPriceOutput col-md-12 inOut grayText orange" style="border:none;" value="--">
+                </div>
+              </div>
+              <div class="sharesDiv col-md-2">
+                <div class="sharesText mobileActive col-xs-6">Recommended shares:</div>
+                <div class="col-md-12 col-xs-6">
+                  <input class="sharesOutput col-md-12 inOut  grayText orange" style="border:none;" value="--">
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!--END ELEMENTS-->
+        </div>
+        <div class="row">
+          <div class="totalRow col-md-10 col-md-offset-1 col-xs-12">
+            <div class="totalAllocation col-md-2 col-md-offset-1 col-xs-6 heroText"><strong>Total allocation:</strong>
+            </div>
+            <div class="totalAllocationPerc teal col-md-2 col-xs-5">100%</div>
+          </div>
+        </div>
+        <br>
+        <div class="row addRemvBtns">
+          <div class="col-md-10 col-md-offset-1 col-xs-12">
+            <p class="col-md-2 col-xs-4 addRmvText">Add or remove:</p>
+            <div class="col-md-2 col-xs-4">
+              <button type="button" class="addBtn btn col-md-4 col-xs-4">+</button>
+              <button type="button" class="remvBtn btn col-md-4  col-md-offset-1 col-xs-4 col-xs-offset-1">-</button>
+            </div>
+            <button class="btn submitButton col-md-3 col-md-offset-6 col-xs-6 col-xs-offset-1" type="submit" value="Submit">submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+      <!--NAV Bottom-->
+    <nav class="navbar purpblu navbar-bottom-fixed">
+      <div class="container-fluid">
+        <a href="index.html"><u>Home</u></a>
+        <br>
+        <br>
+        <div class="navbar-center navBotText">Created using Yahoo Finance API</div>
+      </div>
+    </nav>
+  </body>
+</html>

@@ -18,6 +18,12 @@ background-color: #1B638E;
   color: #313B74;
 }
 
+.headerText:hover {
+  color: #018B9E;
+}
+
+
+
 @media screen and (max-width: 768px) {
   .headerText {
     display: none;
@@ -92,6 +98,12 @@ background-color: #1B638E;
   /*bottom: 0;*/
 }
 
+.portButton:hover {
+  background-color: #018B9E;
+  color: white;
+}
+
+
 .navbutton {
   border-radius: 10%;
   margin: 1%;
@@ -148,9 +160,19 @@ a:hover {
   width: 40px;
 }
 
+.addBtn:hover {
+  color: white;
+  font-weight: bold;
+}
+
 .remvBtn {
   background-color: #FD8F92;
   width: 40px;
+}
+
+.remvBtn:hover {
+  color: white;
+  font-weight: bold;
 }
 
 .addRemvBtns {
@@ -166,6 +188,11 @@ a:hover {
   width: 100px;
   background-color: #FFBD6A;
   color: #2D2D2D
+}
+
+.submitButton:hover {
+  background-color: #018B9E;
+  color: white;
 }
 
 .jumbBox {
@@ -218,4 +245,29 @@ h2 {
 
 .grayText {
 color: #2D2D2D;
+}
+
+.navbar {
+  border-radius: 0;
+}
+
+.discBox {
+  border: 1px solid #2D2D2D;
+  background-color: #39D3FF;
+  color: #313B74;
+  height: 30vh;
+  margin-top: 15vh;
+  border-radius: 2%;
+}
+
+.understoodBtn {
+  border-radius: 2%;
+  margin-top: 2vh;
+  background-color: #FFBD6A;
+  color: #2D2D2D;
+}
+
+.understoodBtn:hover {
+background-color: #018B9E;
+color: white;
 }

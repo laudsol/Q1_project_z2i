@@ -1,46 +1,5 @@
-$('.headerText').popover({
-  placement: 'bottom',
-  container: 'body',
-  html: true,
-  trigger: 'hover',
-});
 
-var totalAllocation = 100;
-
-function updatePercent (event) { // update total percent
-  let totalPercent = 0;
-
-  $('form').find('.allocationVal').each(function (i) {
-    var number = $(this).val();
-
-    if (number.charAt(number.length-1)=='%') {
-      number = number.substring(0,number.length-1);
-    }
-    percent = parseFloat(number);
-    totalPercent += percent;
-    totalAllocation = totalPercent;
-  });
-  $('.totalAllocationPerc').html(totalPercent+"%");
-
-  // function colorChange (totalPercent) {
-  //   if (totalPercent < 80) {
-  //     $('.totalAllocationPerc').addClass('yellow');
-  //   }
-  //   else if (totalPercent > 80 && totalPercent <= 100) {
-  //     $('.totalAllocationPerc').addClass('green');
-  //   }
-  //   else if (totalPercent > 100) {
-  //     $('.totalAllocationPerc').addClass('red');
-  //   }
-  // }
-  // colorChange(totalPercent);
-};
-
-updatePercent();
-
-$("form").on('input',$('.allocationVal'), function (event) { // listener for percent change
-  updatePercent();
-});
+//  Adding stock elements
 
 function addStockElement(event) {
   //Primary elements
@@ -114,11 +73,13 @@ $('.remvBtn').on('click',function(event){
   updatePercent();
 });
 
-var portfolioDef = [{ticker:'aapl', percent: '50%'},{ticker:'googl', percent: '20%'},{ticker:'ge', percent: '30%'}];
+// Portfolio composition and construction
+
+var portfolioDef = [{ticker:'aapl', percent: '50%'},{ticker:'googl', percent: '20%'},{ticker:'ge', percent: '20%'},{ticker:'jpm',percent:'10%'}];
 
 var portfolioReg = [{ticker:'ge', percent: '50%'},{ticker:'jpm', percent: '20%'},{ticker:'dva', percent: '30%'}];
 
-var portfolioAgg = [{ticker:'appl', percent: '50%'},{ticker:'googl', percent: '20%'},{ticker:'ge', percent: '30%'}];
+var portfolioAgg = [{ticker:'vtwo', percent: '6%'},{ticker:'vti', percent: '24%'},{ticker:'vea', percent: '20%'},{ticker:'vss', percent: '5%'},{ticker:'iemg', percent: '18%'},{ticker:'fm', percent: '8%'},{ticker:'hyg',percent:'11%'},{ticker:'ihy', percent: '3%'},{ticker:'emlc', percent: '1%'},{ticker:'emag', percent: '1%'},{ticker:'hyem', percent: '3%'}];
 
 function magic (portfolio) {
   for (i=0; i<portfolio.length; i++) {
@@ -143,12 +104,67 @@ if ($('form').find('.portfolioDef').length > 0) {
   magic(portfolioAgg);
 }
 
+// Popover
+
+$('.headerText').popover({
+  placement: 'bottom',
+  container: 'body',
+  html: true,
+  trigger: 'hover',
+});
 
 
+
+// Total allocation
+
+var totalAllocation = 100;
+
+function updatePercent (event) { // update total percent
+  let totalPercent = 0;
+
+  $('form').find('.allocationVal').each(function (i) {
+    var number = $(this).val();
+
+    if (number.charAt(number.length-1)=='%') {
+      number = number.substring(0,number.length-1);
+    }
+    percent = parseFloat(number);
+    totalPercent += percent;
+    totalAllocation = totalPercent;
+  });
+  $('.totalAllocationPerc').html(totalPercent+"%");
+
+  // function colorChange (totalPercent) {
+  //   if (totalPercent < 80) {
+  //     $('.totalAllocationPerc').addClass('yellow');
+  //   }
+  //   else if (totalPercent > 80 && totalPercent <= 100) {
+  //     $('.totalAllocationPerc').addClass('green');
+  //   }
+  //   else if (totalPercent > 100) {
+  //     $('.totalAllocationPerc').addClass('red');
+  //   }
+  // }
+  // colorChange(totalPercent);
+};
+
+updatePercent();
+
+$("form").on('input',$('.allocationVal'), function (event) { // listener for percent change
+  updatePercent();
+});
+
+
+
+
+// local storage
 
 myStorage = localStorage;
 localData = JSON.parse(localStorage['data']);
 var allData = [];
+
+
+// Submit event: API call,
 
 $("form").submit(function( event ) {
   var inputObj = $(this).serializeArray(); //all form data
