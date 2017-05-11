@@ -1,4 +1,5 @@
-/*COLORS*/
+/*COLORS =========================*/
+
 .purpblu {
   background-color: #313B74;
 }
@@ -8,9 +9,70 @@
 }
 
 .blue {
-background-color: #1B638E;
+  background-color: #1B638E;
 }
-/*Title row*/
+
+.ltblu {
+  background-color: #39D3FF;
+}
+
+.orange {
+  background-color: #FFBD6A;
+}
+
+.grayText {
+color: #2D2D2D;
+}
+
+/*General============================*/
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  padding-bottom: 80px;
+}
+
+.mainBody {
+  height: 100%;
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 100px;
+}
+
+/*TOP Nav =====================*/
+
+.topNav {
+  border-radius: 0;
+}
+
+.navbutton {
+  border-radius: 10%;
+  margin: 1%;
+  color: white;
+}
+
+.navTopText {
+  color: #ADA8AB;
+  font-size: 30px;
+  margin-top: 5px;
+  font-family: Courier New;
+}
+
+/*BOTTOM Nav*/
+
+.bottom {
+  position:absolute;
+   bottom:0;
+   width: 100%;
+   height:70px;
+}
+
+.navBotText {
+  color: #ADA8AB;
+}
+
+/*TITLE row ====================*/
 
 .headerText {
   text-align: center;
@@ -23,14 +85,13 @@ background-color: #1B638E;
 }
 
 
-
 @media screen and (max-width: 768px) {
   .headerText {
     display: none;
   }
 }
 
-/* ELEMENTS */
+/* ELEMENTS ============================*/
 
 .stock {
   padding-top: 10px;
@@ -38,7 +99,6 @@ background-color: #1B638E;
   margin-top: 15px;
   border: 1px #313B74 solid;
   height: flex;
-  /*float: left;*/
 }
 
 .inOut{
@@ -61,7 +121,8 @@ background-color: #1B638E;
     display: none;
   }
 }
-/*TOTAL row*/
+
+/*TOTAL row =============================*/
 
 .totalAllocationPerc {
   color: white;
@@ -72,7 +133,7 @@ background-color: #1B638E;
   margin-top: 25px;
 }
 
-/*Dollar input*/
+/*Dollar input ===========================*/
 
 .dollarInput {
   width: 100px;
@@ -84,76 +145,11 @@ background-color: #1B638E;
   margin-bottom: 20px;
 }
 
-/*SPLASH page*/
-
-.panelHead {
-  background-color: #313B74;
-  color: white;
+.dollar_inv {
+  text-align: right;
 }
 
-.portButton {
-  background-color: #FFBD6A;
-  color: #2D2D2D;
-  /*position: absolute;*/
-  /*bottom: 0;*/
-}
-
-.portButton:hover {
-  background-color: #018B9E;
-  color: white;
-}
-
-
-.navbutton {
-  border-radius: 10%;
-  margin: 1%;
-  color: white;
-}
-
-a {
-  color: white;
-}
-
-a:hover {
-  color: #e89384;
-}
-
-.navTopText {
-  color: #ADA8AB;
-  font-size: 30px;
-  margin-top: 5px;
-}
-
-.navBotText {
-  color: #ADA8AB;
-}
-
-.panBox {
-  background-color: #39D3FF;
-  /*border: 1px gray solid;*/
-  height: 35vh;
-  border-radius: 2%;
-  overflow: hidden;
-}
-
-.buttonBox{
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-}
-
-.pans {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.ltblu {
-  background-color: #39D3FF;
-}
-
-.orange {
-  background-color: #FFBD6A;
-}
+/*ADD & REMOVE button =====================*/
 
 .addBtn {
   background-color: #76D08D;
@@ -180,6 +176,8 @@ a:hover {
   margin-bottom: 5vh;
 }
 
+
+
 .totalAllocation {
   text-align: right;
 }
@@ -195,6 +193,19 @@ a:hover {
   color: white;
 }
 
+.startText {
+  text-align: center;
+}
+
+.addRmvText{
+  font-weight: bold;
+  color: #313B74;
+  padding-top: 6px;
+  text-align: right;
+}
+
+/*SPLASH page ===========================*/
+
 .jumbBox {
   margin-left: 5%;
   margin-right: 5%;
@@ -208,46 +219,60 @@ h2 {
   color: #313B74;
 }
 
-* {
-  /*border: 1px solid red;*/
+a {
+  color: white;
+}
+
+a:hover {
+  color: #e89384;
+}
+
+/*PANELS ===========================*/
+
+.panelHead {
+  background-color: #313B74;
+  color: white;
+}
+
+.portButton {
+  background-color: #FFBD6A;
+  color: #2D2D2D;
+  /*position: absolute;*/
+  /*bottom: 0;*/
+}
+
+.portButton:hover {
+  background-color: #018B9E;
+  color: white;
+}
+
+.panBox {
+  background-color: #39D3FF;
+  /*border: 1px gray solid;*/
+  height: 35vh;
+  border-radius: 2%;
+  overflow: hidden;
+}
+
+.buttonBox{
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+}
+
+.pans {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .panel-body {
   color: #313B74
 }
 
-.startText {
-  text-align: center;
-}
-
-.addRmvText{
-  font-weight: bold;
-  color: #313B74;
-  padding-top: 6px;
-  text-align: right;
-}
-
-.dollar_inv {
-  text-align: right;
-}
-
-.green {
-  background-color: #76D08D;
-}
-
-.red {
-  background-color: #FD8F92;
-}
-
-.yellow {
-  background-color: #FCFF35;
-}
-
-.grayText {
-color: #2D2D2D;
-}
+/*Disclaimer page ====================*/
 
 .discBox {
+  padding-top: 15px;
   border: 1px solid #2D2D2D;
   background-color: #39D3FF;
   color: #313B74;
@@ -270,30 +295,4 @@ color: #2D2D2D;
 .understoodBtn:hover {
   background-color: #018B9E;
   color: white;
-
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  padding-bottom: 80px;
-}
-
-.mainBody {
-  height: 100%;
-  min-height: 100%;
-  position: relative;
-  padding-bottom: 100px;
-}
-
-.bottom {
-  position:absolute;
-   bottom:0;
-   width: 100%;
-   height:70px;
-}
-
-.topNav {
-  border-radius: 0;
 }
