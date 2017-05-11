@@ -75,9 +75,9 @@ $('.remvBtn').on('click',function(event){
 
 // Portfolio composition and construction
 
-var portfolioDef = [{ticker:'aapl', percent: '50%'},{ticker:'googl', percent: '20%'},{ticker:'ge', percent: '20%'},{ticker:'jpm',percent:'10%'}];
+var portfolioDef = [{ticker:'bnd', percent: '32%'},{ticker:'bndx', percent: '24%'},{ticker:'govt', percent: '8%'},{ticker:'igov',percent:'6%'},{ticker:'pgx', percent:'2%'}, {ticker:'sphd', percent:'2%'}, {ticker:'vti', percent:'14%'}, {ticker:'vea', percent:'12%'}];
 
-var portfolioReg = [{ticker:'ge', percent: '50%'},{ticker:'jpm', percent: '20%'},{ticker:'dva', percent: '30%'}];
+var portfolioReg = [{ticker:'vti', percent: '30%'},{ticker:'vea', percent: '20%'},{ticker:'iemg', percent: '10%'},{ticker:'emag', percent: '5%'},{ticker:'bnd', percent: '20%'},{ticker:'bndx', percent: '15%'}];
 
 var portfolioAgg = [{ticker:'vtwo', percent: '6%'},{ticker:'vti', percent: '24%'},{ticker:'vea', percent: '20%'},{ticker:'vss', percent: '5%'},{ticker:'iemg', percent: '18%'},{ticker:'fm', percent: '8%'},{ticker:'hyg',percent:'11%'},{ticker:'ihy', percent: '3%'},{ticker:'emlc', percent: '1%'},{ticker:'emag', percent: '1%'},{ticker:'hyem', percent: '3%'}];
 
@@ -159,8 +159,8 @@ $("form").on('input',$('.allocationVal'), function (event) { // listener for per
 
 // local storage
 
-myStorage = localStorage;
-localData = JSON.parse(localStorage['data']);
+// myStorage = localStorage;
+// localData = JSON.parse(localStorage['data']);
 var allData = [];
 
 
@@ -188,8 +188,8 @@ $("form").submit(function( event ) {
     Promise.all(financeRequests).then(function (results) {
       // console.log(results);
       //SET LOCAL STORAGE
-      localStorage.setItem('data',JSON.stringify(results)); //local storage
-      localData = JSON.parse(localStorage['data']);
+      // localStorage.setItem('data',JSON.stringify(results)); //local storage
+      // localData = JSON.parse(localStorage['data']);
       // console.log(localData);
 
       for (i = 0; i < results.length; i++) { //extract price and ticker
