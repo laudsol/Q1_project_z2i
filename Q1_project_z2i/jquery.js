@@ -28,10 +28,9 @@ function addStockElement(event) {
   let elementBoxPercent = $('<div>').addClass("col-md-12 col-xs-6");
   let elementInputPercent = $('<input>').addClass("allocationVal col-md-12 inOut ltblu").attr('style','border:none;').attr('type','text').attr('name','percent').attr('value','0%');
 
-  $(elementPercent).append(elementLabelPercent);
-  $(elementBoxPercent).append(elementInputPercent);
-  $(elementPercent).append(elementBoxPercent);
-  $(elementStock).append(elementPercent);
+  addAllocationElemenet(elementPercent,elementLabelPercent,elementInputPercent,elementBoxPercent,elementStock);
+
+
 
   //third  - current shares
   let elementCurShar = $('<div>').addClass("currentSharesDiv col-md-2");
@@ -326,4 +325,11 @@ function addTickerElement(elTicker,elLabelTicker,elInputTicker,elBoxTicker, elSt
   $(elBoxTicker).append(elInputTicker);
   $(elTicker).append(elBoxTicker);
   $(elStock).append(elTicker);
-};
+}
+
+function addAllocationElemenet(elPercent,elLabelPercent,elInputPercent,elBoxPercent,elStock){
+  $(elPercent).append(elLabelPercent);
+  $(elBoxPercent).append(elInputPercent);
+  $(elPercent).append(elBoxPercent);
+  $(elStock).append(elPercent);
+}
