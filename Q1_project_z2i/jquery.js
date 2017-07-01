@@ -180,14 +180,14 @@ $("form").submit(function( event ) {
     return false;
   } else {
     event.preventDefault();
-    // var financeRequests = [];
-    // for (var key in tickers) {
-    //   let ticker = tickers[key].value;
-    //   if (ticker !== "") {
-    //     financeRequests.push($.getJSON('http://www.enclout.com/api/yahoo_finance/show.json?auth_token=xxxxxx&text='+ticker));
-    //   }
-    // }
-    // Promise.all(financeRequests).then(function (results) {
+    var financeRequests = [];
+    for (var key in tickers) {
+      let ticker = tickers[key].value;
+      if (ticker !== "") {
+        financeRequests.push($.getJSON('http://www.enclout.com/api/yahoo_finance/show.json?auth_token=xxxxxx&text='+ticker));
+      }
+    }
+    Promise.all(financeRequests).then(function (results) {
       // console.log(results);
       //SET LOCAL STORAGE
       // localStorage.setItem('data',JSON.stringify(results)); //local storage
@@ -196,20 +196,20 @@ $("form").submit(function( event ) {
 
 
 
-      for (i = 0; i < resultsD.length; i++) { //extract price and ticker
+      for (i = 0; i < results.length; i++) { //extract price and ticker
 
-        var tempObj = resultsD[i][0];
+        var tempObj = results[i][0];
         var tempSymbol = tempObj.symbol;
         var tempBid =  parseFloat(tempObj.bid);
         var tempAsk =  parseFloat(tempObj.ask);
         var tempClose =  parseFloat(tempObj.close);
+
+
+        var tempPrice = price_by_bidask_or_close(tempAsk, tempBid, tempClose)
+
         var tempPrice = 0;
 
-        if (tempAsk >= 0 && tempBid >= 0) { //finds price by bid/ask OR close
-          tempPrice = (tempBid+tempAsk)*0.5;
-        } else {
-          tempPrice = tempClose;
-        }
+
         var price = parseFloat(tempPrice.toFixed(2));
         tempData.push(price);
 
@@ -314,6 +314,14 @@ $("form").submit(function( event ) {
       }
     });
 
-    // }); //END API CALL
+    }); //END API CALL
   };
 });
+
+function price_by_bidask_or_close(ask, bid, close){
+  if (ask >= 0 && bid >= 0) {
+    return (bid+ask)*0.5;
+  } else {
+    return close;
+  }
+}
