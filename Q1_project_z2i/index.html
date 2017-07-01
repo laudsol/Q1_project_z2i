@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Index</title>
-    <script defer src="jQuery.js"></script>
+    <script defer src="jquery.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -18,37 +18,100 @@
   </head>
   <body>
     <!--NAV BAR -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar purpblu topNav">
       <div class="container-fluid">
-        <div class="navbar-header navbar-right">
-          <a class="navbar-brand" href="#">
-            zero-2-invested
+        <div class="text navbar-right">
+          <a class="navbar-brand navTopText"  href="index.html">
+            zero-2-invest
           </a>
         </div>
-        <ul class="nav nav-pills">
-          <li role="presentation" class="active"><a href="index.html">Home</a></li>
-        </ul>
+          <ul class="nav nav-pills">
+            <li role="presentation" class="navbutton teal"><a href="index.html">Home</a></li>
+            <li role="presentation" class="navbutton teal"><a href="disclosures.html">Disclosures</a></li>
+          </ul>
       </div>
     </nav>
+    <!--Hero-->
+    <div class="jumbotron">
+      <div class="jumbBox">
+        <h2>Save the 1% (for yourself)</h2>
+        <p class="heroText">Having a well-balanced financial portfolio is a key component to planning for your future. Wealth advisors charge between 1% and 2% of assets to structure and monitor your portfolio.  Zero-2-invest is a free platform offering easy-to-use portfolio tools, and is dedicated to putting money back where it belongs: in your pocket.</p>
+        <br>
+        <h3 class="heroText startText">Choose a profile below to get started:</h3>
+      </div>
+    </div>
     <!-- Panels -->
-    <div class="col-md-12">
+    <div class="pans container-fluid">
       <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="panel panel-primary col-md-5">
-            <div class="panel-heading">Panel heading without title</div>
-            <div class="panel-body">Panel content
+        <div class="col-md-12">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="panBox">
+              <div class="panel-heading panelHead">
+                <h3 class="panel-title">I prefer less risk</h3>
+              </div>
+              <div class="panel-body">Holding lots of low-risk debt (bonds) and some equity (stocks) in mature companies in stable markets will reduce the volatility of your portfolio, making large losses less likely. This allocation is focused on income generation, usually has limited upside, and is designed for capital preservation.
+              </div>
+              <div class="buttonBox">
+              <a href="portDef.html"><button type="button" class="btn portButton">Defensive Portfolio</button></a>
+              </div>
             </div>
-            <button type="button" class="btn btn-default">
-              <a href="port.html">Left</a>
-            </button>
           </div>
-          <div class="panel panel-primary col-md-5">...</div>
-          <div class="panel panel-primary col-md-5">...</div>
-          <div class="panel panel-primary col-md-5">...</div>
+          <br class="mobileActive">
+          <div class="col-md-5">
+            <div class="panBox">
+              <div class="panel-heading panelHead">
+                <h3 class="panel-title">I'm okay with moderate amounts of risk</h3>
+              </div>
+              <div class="panel-body">Investing in a well-balanced portfolio over a long period of time is the best way to grow your assets safely. Exposure mostly consists of a wide range of companies in developed market, as well as some low-to-moderate risk debt.
+              </div>
+              <div class="buttonBox">
+              <a href="portReg.html"><button type="button" class="btn portButton">Balanced Portfolio</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-5 col-md-offset-1">
+            <div class="panBox">
+              <div class="panel-heading panelHead">
+                <h3 class="panel-title">I can tolerate higher levels of risk</h3>
+              </div>
+              <div class="panel-body"><p>Higher levels of risk can lead to substantially increased performance when managed properly. Increased exposure to small, unintrenched companies, high-risk debt, and emerging and frontier markets will increase volatility over the short term, but also has the potential for greater upside.</p>
+              </div>
+              <div class="buttonBox">
+                <a href="portAgg.html"><button type="button" class="btn portButton">Aggressive Portfolio</button></a>
+              </div>
+            </div>
+          </div>
+          <br class="mobileActive">
+          <div class="col-md-5">
+            <div class="panBox">
+              <div class="panel-heading panelHead">
+                <h3 class="panel-title">Build my own portfolio</h3>
+              </div>
+              <div class="panel-body">Doing deep research on a sector or market you are knowledgeable about can be a rewarding and profitable way to invest. A good rule of thumb is to keep most of your assets in a diversified portfolio, while setting aside 5-10% to 'play' with in the markets.
+              </div>
+              <div class="buttonBox">
+              <a href="portBlank.html"><button type="button" class="btn portButton">Customize Portfolio</button></a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
+    <!--BOTTOM NAV-->
+      <nav class="navbar purpblu navbar-fixed-bottom">
+        <div class="container-fluid">
+          <a href="index.html"><u>Home</u></a>
+          <a href="disclosures.html"><u>Disclosures</u></a>
+          <br>
+          <br>
+          <div class="navbar-center navBotText">Created using Yahoo Finance API</div>
+        </div>
+      </nav>
 
   </body>
 </html>
