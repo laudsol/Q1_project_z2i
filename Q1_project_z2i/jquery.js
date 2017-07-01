@@ -38,10 +38,7 @@ function addStockElement(event) {
   let elementBoxCurShar = $('<div>').addClass("col-md-12 col-xs-6");
   let elementInputCurShar = $('<input>').addClass("currentSharesInput col-md-12 inOut ltblu").attr('style','border:none;').attr('type','text').attr('name','currentShares').attr('value','0');
 
-  $(elementCurShar).append(elementLabelCurShar);
-  $(elementBoxCurShar).append(elementInputCurShar)
-  $(elementCurShar).append(elementBoxCurShar);
-  $(elementStock).append(elementCurShar);
+  addCurrentSharesElement(elementCurShar,elementLabelCurShar,elementBoxCurShar,elementInputCurShar,elementStock);
 
   //fourth - price
   let elementPrice = $('<div>').addClass("priceDiv col-md-2");
@@ -332,4 +329,11 @@ function addAllocationElemenet(elPercent,elLabelPercent,elInputPercent,elBoxPerc
   $(elBoxPercent).append(elInputPercent);
   $(elPercent).append(elBoxPercent);
   $(elStock).append(elPercent);
+}
+
+function addCurrentSharesElement(elCurShar,elLabelCurShar,elBoxCurShar,elInputCurShar,elStock){
+  $(elCurShar).append(elLabelCurShar);
+  $(elBoxCurShar).append(elInputCurShar)
+  $(elCurShar).append(elBoxCurShar);
+  $(elStock).append(elCurShar);
 }
