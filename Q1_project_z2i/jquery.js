@@ -76,30 +76,23 @@ var portfolioDef = [{ticker:'bnd', percent: '32%'},{ticker:'bndx', percent: '24%
 
 var portfolioReg = [{ticker:'vti', percent: '30%'},{ticker:'vea', percent: '20%'},{ticker:'iemg', percent: '10%'},{ticker:'emag', percent: '5%'},{ticker:'bnd', percent: '20%'},{ticker:'bndx', percent: '15%'}];
 
-var portfolioAgg = [{ticker:'vtwo', percent: '6%'},{ticker:'vti', percent: '24%'},{ticker:'vea', percent: '20%'},{ticker:'vss', percent: '5%'},{ticker:'iemg', percent: '18%'},{ticker:'fm', percent: '8%'},{ticker:'hyg',percent:'11%'},{ticker:'ihy', percent: '3%'},{ticker:'emlc', percent: '1%'},{ticker:'emag', percent: '1%'},{ticker:'hyem', percent: '3%'}];
+var portfolioAgg = [{ticker:'vtwo', percent: '6%'},{ticker:'vti', percent: '24%'},{ticker:'vea', percent: '20%'},{ticker:'vss', percent: '5%'},{ticker:'iemg', percent: '18%'},{ticker:'fm', percent: '8%'}, {ticker:'hyg', percent:'11%'},{ticker:'ihy', percent: '3%'},{ticker:'emlc', percent: '1%'},{ticker:'emag', percent: '1%'},{ticker:'hyem', percent: '3%'}];
 
+// assign portfolio allocations based on selected profile
 if ($('form').find('.portfolioDef').length > 0) {
-  assignPortfolioToRiskProfile(portfolioDef);
+  createRecommendedAllocation(portfolioDef);
   resultsD = dummyDef;
 } else if ($('form').find('.portfolioReg').length > 0) {
-  assignPortfolioToRiskProfile(portfolioReg);
+  createRecommendedAllocation(portfolioReg);
   resultsD = dummyReg;
 } else if ($('form').find('.portfolioAgg').length > 0) {
-  assignPortfolioToRiskProfile(portfolioAgg);
+  createRecommendedAllocation(portfolioAgg);
   resultsD = dummyAgg;
 } else if ($('form').find('.portfolioCust').length > 0) {
   resultsD = dummyCust;
 }
 
-// Popover
-
-$('.headerText').popover({
-  placement: 'bottom',
-  container: 'body',
-  html: true,
-  trigger: 'hover',
-});
-
+createPopoverExplanations()
 
 // Total allocation
 
@@ -337,7 +330,7 @@ function appendShareDivToForm(elRow,elStock){
   $('.elements').append(elRow);
 }
 
-function assignPortfolioToRiskProfile (portfolio) {
+function createRecommendedAllocation(portfolio) {
   for (i=0; i<portfolio.length; i++) {
     addStockElement();
   }
@@ -349,5 +342,14 @@ function assignPortfolioToRiskProfile (portfolio) {
   $('.elements').find('.allocationVal').each(function(i) {
     let tempTicker = portfolio[i].percent;
     $(this).val(tempTicker);
+  });
+}
+
+function createPopoverExplanations(){
+  $('.headerText').popover({
+    placement: 'bottom',
+    container: 'body',
+    html: true,
+    trigger: 'hover',
   });
 }
