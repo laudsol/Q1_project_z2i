@@ -53,10 +53,10 @@ function addStockElement(event) {
   let elementRecomSharesText = $('<div>').addClass("sharesText mobileActive col-xs-6").html("Recommended shares:");
   let elementBoxRcomShares = $('<div>').addClass("col-md-12 col-xs-6");
   let elementRecomSharesOutput = $('<input>').addClass("sharesOutput col-md-12 inOut grayText orange").attr('style', 'border:none').attr('value','--');
-  $(elementRecomShares).append(elementRecomSharesText);
-  $(elementBoxRcomShares).append(elementRecomSharesOutput)
-  $(elementRecomShares).append(elementBoxRcomShares);
-  $(elementStock).append(elementRecomShares);
+
+  appendRecoShares(elementRecomShares,elementRecomSharesText,elementBoxRcomShares,elementRecomSharesOutput,elementStock);
+
+
 
   // append all to form
   $(elementRow).append(elementStock);
@@ -340,4 +340,11 @@ function appendPrice(elPrice,elPriceText,elBoxPrice,elPriceInput,elStock){
   $(elBoxPrice).append(elPriceInput);
   $(elPrice).append(elBoxPrice);
   $(elStock).append(elPrice);
+}
+
+function appendRecoShares(elRecomShares,elRecomSharesText,elBoxRcomShares,elRecomSharesOutput,elStock){
+  $(elRecomShares).append(elRecomSharesText);
+  $(elBoxRcomShares).append(elRecomSharesOutput);
+  $(elRecomShares).append(elBoxRcomShares);
+  $(elStock).append(elRecomShares);
 }
