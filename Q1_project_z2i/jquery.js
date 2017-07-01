@@ -20,7 +20,7 @@ function addStockElement(event) {
   let elementBoxTicker = $('<div>').addClass("col-md-12 col-xs-6");
   let elementInputTicker = $('<input>').addClass("tickerInput col-md-12 inOut ltblu").attr('style','border:none;').attr('type','text').attr('name','ticker').attr('value','');
 
-  addTickerElement(elementTicker,elementLabelTicker,elementInputTicker,elementBoxTicker,elementStock);
+  appendTickerElement(elementTicker,elementLabelTicker,elementInputTicker,elementBoxTicker,elementStock);
 
   //second - allocation
   let elementPercent = $('<div>').addClass("allocationDiv col-md-2");
@@ -28,7 +28,7 @@ function addStockElement(event) {
   let elementBoxPercent = $('<div>').addClass("col-md-12 col-xs-6");
   let elementInputPercent = $('<input>').addClass("allocationVal col-md-12 inOut ltblu").attr('style','border:none;').attr('type','text').attr('name','percent').attr('value','0%');
 
-  addAllocationElemenet(elementPercent,elementLabelPercent,elementInputPercent,elementBoxPercent,elementStock);
+  appendAllocationElemenet(elementPercent,elementLabelPercent,elementInputPercent,elementBoxPercent,elementStock);
 
 
 
@@ -38,7 +38,7 @@ function addStockElement(event) {
   let elementBoxCurShar = $('<div>').addClass("col-md-12 col-xs-6");
   let elementInputCurShar = $('<input>').addClass("currentSharesInput col-md-12 inOut ltblu").attr('style','border:none;').attr('type','text').attr('name','currentShares').attr('value','0');
 
-  addCurrentSharesElement(elementCurShar,elementLabelCurShar,elementBoxCurShar,elementInputCurShar,elementStock);
+  appendCurrentSharesElement(elementCurShar,elementLabelCurShar,elementBoxCurShar,elementInputCurShar,elementStock);
 
   //fourth - price
   let elementPrice = $('<div>').addClass("priceDiv col-md-2");
@@ -46,10 +46,7 @@ function addStockElement(event) {
   let elementBoxPrice = $('<div>').addClass("col-md-12 col-xs-6");
   let elementPriceInput = $('<input>').addClass("currentPriceOutput col-md-12 inOut grayText orange").attr('style','border:none').attr('value','--');
 
-  $(elementPrice).append(elementPriceText);
-  $(elementBoxPrice).append(elementPriceInput);
-  $(elementPrice).append(elementBoxPrice);
-  $(elementStock).append(elementPrice);
+  appendPrice(elementPrice,elementPriceText,elementBoxPrice,elementPriceInput,elementStock);
 
   //fifth - recommended shares
   let elementRecomShares = $('<div>').addClass("sharesDiv col-md-2");
@@ -317,23 +314,30 @@ function priceByBidaskOrClose(ask, bid, close){
   }
 }
 
-function addTickerElement(elTicker,elLabelTicker,elInputTicker,elBoxTicker, elStock){
+function appendTickerElement(elTicker,elLabelTicker,elInputTicker,elBoxTicker, elStock){
   $(elTicker).append(elLabelTicker);
   $(elBoxTicker).append(elInputTicker);
   $(elTicker).append(elBoxTicker);
   $(elStock).append(elTicker);
 }
 
-function addAllocationElemenet(elPercent,elLabelPercent,elInputPercent,elBoxPercent,elStock){
+function appendAllocationElemenet(elPercent,elLabelPercent,elInputPercent,elBoxPercent,elStock){
   $(elPercent).append(elLabelPercent);
   $(elBoxPercent).append(elInputPercent);
   $(elPercent).append(elBoxPercent);
   $(elStock).append(elPercent);
 }
 
-function addCurrentSharesElement(elCurShar,elLabelCurShar,elBoxCurShar,elInputCurShar,elStock){
+function appendCurrentSharesElement(elCurShar,elLabelCurShar,elBoxCurShar,elInputCurShar,elStock){
   $(elCurShar).append(elLabelCurShar);
   $(elBoxCurShar).append(elInputCurShar)
   $(elCurShar).append(elBoxCurShar);
   $(elStock).append(elCurShar);
+}
+
+function appendPrice(elPrice,elPriceText,elBoxPrice,elPriceInput,elStock){
+  $(elPrice).append(elPriceText);
+  $(elBoxPrice).append(elPriceInput);
+  $(elPrice).append(elBoxPrice);
+  $(elStock).append(elPrice);
 }
