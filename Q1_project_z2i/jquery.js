@@ -1,6 +1,5 @@
-// dummy price data
-
-const dummyReg = [[{close: '123.01'}],[{close: '40.81'}],[{close: '49.75'}],[{close: '21.53'}],[{close: '81.11'}],[{close: '54.19'}]];
+// Begin - dummy price data in case API breaks
+const dummyReg = [[{close: '123.01'}],[{close: '40.81'}],[{close:  '49.75'}],[{close: '21.53'}],[{close: '81.11'}],[{close: '54.19'}]];
 
 const dummyDef = [[{close: '81.11'}],[{close: '54.19'}],[{close: '25.06'}],[{close: '91.83'}],[{close: '15.03'}],[{close: '39.71'}],[{close: '123.01'}],[{close: '40.81'}]];
 
@@ -10,8 +9,7 @@ const dummyCust = [[{close: '153.95'}],[{close: '955.89'}]]
 
 resultsD = ''
 
-//  Adding fund/stock elements to portfolio page
-
+//  Adding indivudual stock elements to portfolio page
 function addStockElement(event) {
   //Primary elements
   let elementRow = $('<div>').addClass("row stuff");
@@ -22,10 +20,7 @@ function addStockElement(event) {
   let elementBoxTicker = $('<div>').addClass("col-md-12 col-xs-6");
   let elementInputTicker = $('<input>').addClass("tickerInput col-md-12 inOut ltblu").attr('style','border:none;').attr('type','text').attr('name','ticker').attr('value','');
 
-  $(elementTicker).append(elementLabelTicker);
-  $(elementBoxTicker).append(elementInputTicker);
-  $(elementTicker).append(elementBoxTicker);
-  $(elementStock).append(elementTicker);
+  addTickerElement(elementTicker,elementLabelTicker,elementInputTicker,elementBoxTicker,elementStock);
 
   //second - allocation
   let elementPercent = $('<div>').addClass("allocationDiv col-md-2");
@@ -205,7 +200,7 @@ $("form").submit(function( event ) {
         var tempClose =  parseFloat(tempObj.close);
 
 
-        var tempPrice = price_by_bidask_or_close(tempAsk, tempBid, tempClose)
+        var tempPrice = priceByBidaskOrClose(tempAsk, tempBid, tempClose)
 
         var tempPrice = 0;
 
@@ -318,10 +313,17 @@ $("form").submit(function( event ) {
   };
 });
 
-function price_by_bidask_or_close(ask, bid, close){
+function priceByBidaskOrClose(ask, bid, close){
   if (ask >= 0 && bid >= 0) {
     return (bid+ask)*0.5;
   } else {
     return close;
   }
 }
+
+function addTickerElement(elTicker,elLabelTicker,elInputTicker,elBoxTicker, elStock){
+  $(elTicker).append(elLabelTicker);
+  $(elBoxTicker).append(elInputTicker);
+  $(elTicker).append(elBoxTicker);
+  $(elStock).append(elTicker);
+};
