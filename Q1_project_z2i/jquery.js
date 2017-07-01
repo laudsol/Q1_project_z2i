@@ -11,9 +11,11 @@ resultsD = ''
 
 //  Adding indivudual stock elements to portfolio page
 function addStockElement(event) {
+
   //Primary elements
   let elementRow = $('<div>').addClass("row stuff");
   let elementStock = $('<div>').addClass("stock col-md-10 col-md-offset-1 col-xs-12");
+
   //first - ticker
   let elementTicker = $('<div>').addClass("tickerDiv col-md-2 col-md-offset-1");
   let elementLabelTicker = $('<div>').addClass("tickerText mobileActive col-xs-6").html('Ticker:');
@@ -29,8 +31,6 @@ function addStockElement(event) {
   let elementInputPercent = $('<input>').addClass("allocationVal col-md-12 inOut ltblu").attr('style','border:none;').attr('type','text').attr('name','percent').attr('value','0%');
 
   appendAllocationElemenet(elementPercent,elementLabelPercent,elementInputPercent,elementBoxPercent,elementStock);
-
-
 
   //third  - current shares
   let elementCurShar = $('<div>').addClass("currentSharesDiv col-md-2");
@@ -56,11 +56,9 @@ function addStockElement(event) {
 
   appendRecoShares(elementRecomShares,elementRecomSharesText,elementBoxRcomShares,elementRecomSharesOutput,elementStock);
 
+  // append entire share element` to form
 
-
-  // append all to form
-  $(elementRow).append(elementStock);
-  $('.elements').append(elementRow);
+  appendShareDivToForm(elementRow,elementStock);
 }
 
 $('.addBtn').on('click',function(event){
@@ -347,4 +345,9 @@ function appendRecoShares(elRecomShares,elRecomSharesText,elBoxRcomShares,elReco
   $(elBoxRcomShares).append(elRecomSharesOutput);
   $(elRecomShares).append(elBoxRcomShares);
   $(elStock).append(elRecomShares);
+}
+
+function appendShareDivToForm(elRow,elStock){
+  $(elRow).append(elStock);
+  $('.elements').append(elRow);
 }
