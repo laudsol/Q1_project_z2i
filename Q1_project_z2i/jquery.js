@@ -92,27 +92,9 @@ if ($('form').find('.portfolioDef').length > 0) {
   resultsD = dummyCust;
 }
 
-createPopoverExplanations()
-
-// Total allocation
+createPopoverExplanations();
 
 var totalAllocation = 100;
-
-function updatePercent (event) { // update total percent
-  let totalPercent = 0;
-
-  $('form').find('.allocationVal').each(function (i) {
-    var number = $(this).val();
-
-    if (number.charAt(number.length-1)=='%') {
-      number = number.substring(0,number.length-1);
-    }
-    percent = parseFloat(number);
-    totalPercent += percent;
-    totalAllocation = totalPercent;
-  });
-  $('.totalAllocationPerc').html(totalPercent+"%");
-};
 
 updatePercent();
 
@@ -120,18 +102,13 @@ $("form").on('input',$('.allocationVal'), function (event) { // listener for per
   updatePercent();
 });
 
-
-
-
 // local storage
 
 // myStorage = localStorage;
 // localData = JSON.parse(localStorage['data']);
 var allData = [];
 
-
 // Submit event: API call,
-
 $("form").submit(function( event ) {
   var inputObj = $(this).serializeArray(); //all form data
   var tickers = inputObj.filter(function(obj){  //finds tickers from form data
@@ -158,8 +135,6 @@ $("form").submit(function( event ) {
       // localData = JSON.parse(localStorage['data']);
       // console.log(localData);
 
-
-
       for (i = 0; i < results.length; i++) { //extract price and ticker
 
         var tempObj = results[i][0];
@@ -167,18 +142,10 @@ $("form").submit(function( event ) {
         var tempBid =  parseFloat(tempObj.bid);
         var tempAsk =  parseFloat(tempObj.ask);
         var tempClose =  parseFloat(tempObj.close);
-
-
-        var tempPrice = priceByBidaskOrClose(tempAsk, tempBid, tempClose)
-
-        var tempPrice = 0;
-
-
+        var tempPrice = priceByBidaskOrClose(tempAsk, tempBid, tempClose);
         var price = parseFloat(tempPrice.toFixed(2));
         tempData.push(price);
-
         symbols.push(tempSymbol);
-
       }         // END PROMISE -> ACTIONS FROM HERE
 
       // APPEND PRICE TO PAGE =======================
@@ -352,4 +319,20 @@ function createPopoverExplanations(){
     html: true,
     trigger: 'hover',
   });
+}
+
+function updatePercent (event) {
+  let totalPercent = 0;
+
+  $('form').find('.allocationVal').each(function (i) {
+    var number = $(this).val();
+
+    if (number.charAt(number.length-1)=='%') {
+      number = number.substring(0,number.length-1);
+    }
+    percent = parseFloat(number);
+    totalPercent += percent;
+    totalAllocation = totalPercent;
+  });
+  $('.totalAllocationPerc').html(totalPercent+"%");
 }
