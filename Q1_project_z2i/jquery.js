@@ -78,29 +78,14 @@ var portfolioReg = [{ticker:'vti', percent: '30%'},{ticker:'vea', percent: '20%'
 
 var portfolioAgg = [{ticker:'vtwo', percent: '6%'},{ticker:'vti', percent: '24%'},{ticker:'vea', percent: '20%'},{ticker:'vss', percent: '5%'},{ticker:'iemg', percent: '18%'},{ticker:'fm', percent: '8%'},{ticker:'hyg',percent:'11%'},{ticker:'ihy', percent: '3%'},{ticker:'emlc', percent: '1%'},{ticker:'emag', percent: '1%'},{ticker:'hyem', percent: '3%'}];
 
-function magic (portfolio) {
-  for (i=0; i<portfolio.length; i++) {
-    addStockElement();
-  }
-  $('.elements').find('.tickerInput').each(function (i) {
-    let tempTicker = portfolio[i].ticker;
-    $(this).val(tempTicker);
-  });
-
-  $('.elements').find('.allocationVal').each(function (i) {
-    let tempTicker = portfolio[i].percent;
-    $(this).val(tempTicker);
-  });
-}
-
 if ($('form').find('.portfolioDef').length > 0) {
-  magic(portfolioDef);
+  assignPortfolioToRiskProfile(portfolioDef);
   resultsD = dummyDef;
 } else if ($('form').find('.portfolioReg').length > 0) {
-  magic(portfolioReg);
+  assignPortfolioToRiskProfile(portfolioReg);
   resultsD = dummyReg;
 } else if ($('form').find('.portfolioAgg').length > 0) {
-  magic(portfolioAgg);
+  assignPortfolioToRiskProfile(portfolioAgg);
   resultsD = dummyAgg;
 } else if ($('form').find('.portfolioCust').length > 0) {
   resultsD = dummyCust;
@@ -350,4 +335,19 @@ function appendRecoShares(elRecomShares,elRecomSharesText,elBoxRcomShares,elReco
 function appendShareDivToForm(elRow,elStock){
   $(elRow).append(elStock);
   $('.elements').append(elRow);
+}
+
+function assignPortfolioToRiskProfile (portfolio) {
+  for (i=0; i<portfolio.length; i++) {
+    addStockElement();
+  }
+  $('.elements').find('.tickerInput').each(function(i) {
+    let tempTicker = portfolio[i].ticker;
+    $(this).val(tempTicker);
+  });
+
+  $('.elements').find('.allocationVal').each(function(i) {
+    let tempTicker = portfolio[i].percent;
+    $(this).val(tempTicker);
+  });
 }
