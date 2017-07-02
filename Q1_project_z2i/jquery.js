@@ -193,9 +193,8 @@ $("form").submit(function( event ) {
         }
       }
 
-    allocateRemainingDollars(sortedDeltas);
-
-
+    allocateRemainingDollars();
+    appendOptimizedShares(sortedDeltas)
 
     }); //END API CALL
   };
