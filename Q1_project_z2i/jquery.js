@@ -78,8 +78,6 @@ var portfolioReg = [{ticker:'vti', percent: '30%'},{ticker:'vea', percent: '20%'
 
 var portfolioAgg = [{ticker:'vtwo', percent: '6%'},{ticker:'vti', percent: '24%'},{ticker:'vea', percent: '20%'},{ticker:'vss', percent: '5%'},{ticker:'iemg', percent: '18%'},{ticker:'fm', percent: '8%'}, {ticker:'hyg', percent:'11%'},{ticker:'ihy', percent: '3%'},{ticker:'emlc', percent: '1%'},{ticker:'emag', percent: '1%'},{ticker:'hyem', percent: '3%'}];
 
-// assign portfolio allocations based on selected profile
-
 assignPortfolioToRiskProfile(portfolioDef,dummyDef,portfolioReg,dummyReg,portfolioAgg,dummyAgg,dummyCust,resultsD);
 
 createPopoverExplanations();
@@ -177,33 +175,15 @@ $("form").submit(function( event ) {
         $(this).val(shares);
 
         let delta = 1-((shares*price)/dollarTarget); // get delta between dollars spent, and allocated dollars
-        let readySymbol = symbols[i]
-        deltas.push({symbol: readySymbol, delta: delta, price: price, shares:shares})
+        let readySymbol = symbols[i];
+        deltas.push({symbol: readySymbol, delta: delta, price: price, shares:shares});
         investedDollars += (shares*price);
       });
+
       var unallocatedDollars = (investment*(totalAllocation/100)) - investedDollars;
       var sortedDeltas = [];
 
-      function sortDeltas () { // sort deltas highest to lowest
-        sortedDeltas = deltas.sort(function(a,b){
-          return deltas[a]-deltas[b];
-        });
-      }
-
       sortDeltas();
-
-      // console.log(sortedDeltas);
-
-      function incrementalBuy () {
-        for (i = 0; i<sortedDeltas.length; i++) {
-          // console.log(unallocatedDollars);
-          if (unallocatedDollars > 0 && sortedDeltas[i].price <= unallocatedDollars){
-            sortedDeltas[i].shares += 1;
-            unallocatedDollars -= sortedDeltas[i].price;
-            // console.log(sortedDeltas[i].shares);
-          };
-        }
-      }
 
       var minPrice = allPrices[0];
 
@@ -213,27 +193,16 @@ $("form").submit(function( event ) {
         }
       }
 
-      function allocateRemainingDollars () {
-        if (unallocatedDollars > 0 && unallocatedDollars > minPrice) {
-        incrementalBuy();
-        }
-      }
+    allocateRemainingDollars(sortedDeltas);
 
-    allocateRemainingDollars();
 
-    console.log(deltas);
-
-    $('form').find('.stock').each(function (j) {
-      for(i = 0; i<sortedDeltas.length; i++) {
-        if (sortedDeltas[i].symbol == $(this).find('.tickerInput').val()) {
-          $(this).find('.sharesOutput').val(sortedDeltas[i].shares);
-        }
-      }
-    });
 
     }); //END API CALL
   };
 });
+
+
+//----------INDEX OF ALL FUNCTIONS INVOKED ABOVE-------------------
 
 function priceByBidaskOrClose(ask, bid, close){
   if (ask >= 0 && bid >= 0) {
@@ -341,5 +310,38 @@ function updatePercent (event) {
 function appendPriceToPage(tempData){
   $('form').find('.currentPriceOutput').each(function (i) {
     $(this).val("$"+tempData[i]);
+  });
+}
+
+function sortDeltas () {
+  sortedDeltas = deltas.sort(function(a,b){
+    return deltas[a]-deltas[b];
+  });
+}
+
+function incrementalBuy () {
+  for (i = 0; i<sortedDeltas.length; i++) {
+    // console.log(unallocatedDollars);
+    if (unallocatedDollars > 0 && sortedDeltas[i].price <= unallocatedDollars){
+      sortedDeltas[i].shares += 1;
+      unallocatedDollars -= sortedDeltas[i].price;
+      // console.log(sortedDeltas[i].shares);
+    };
+  }
+}
+
+function allocateRemainingDollars () {
+  if (unallocatedDollars > 0 && unallocatedDollars > minPrice) {
+  incrementalBuy();
+  }
+}
+
+function appendOptimizedShares(sortedDeltas){
+  $('form').find('.stock').each(function (j) {
+    for(i = 0; i<sortedDeltas.length; i++) {
+      if (sortedDeltas[i].symbol == $(this).find('.tickerInput').val()) {
+        $(this).find('.sharesOutput').val(sortedDeltas[i].shares);
+      }
+    }
   });
 }
