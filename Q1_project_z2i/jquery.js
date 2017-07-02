@@ -79,18 +79,8 @@ var portfolioReg = [{ticker:'vti', percent: '30%'},{ticker:'vea', percent: '20%'
 var portfolioAgg = [{ticker:'vtwo', percent: '6%'},{ticker:'vti', percent: '24%'},{ticker:'vea', percent: '20%'},{ticker:'vss', percent: '5%'},{ticker:'iemg', percent: '18%'},{ticker:'fm', percent: '8%'}, {ticker:'hyg', percent:'11%'},{ticker:'ihy', percent: '3%'},{ticker:'emlc', percent: '1%'},{ticker:'emag', percent: '1%'},{ticker:'hyem', percent: '3%'}];
 
 // assign portfolio allocations based on selected profile
-if ($('form').find('.portfolioDef').length > 0) {
-  createRecommendedAllocation(portfolioDef);
-  resultsD = dummyDef;
-} else if ($('form').find('.portfolioReg').length > 0) {
-  createRecommendedAllocation(portfolioReg);
-  resultsD = dummyReg;
-} else if ($('form').find('.portfolioAgg').length > 0) {
-  createRecommendedAllocation(portfolioAgg);
-  resultsD = dummyAgg;
-} else if ($('form').find('.portfolioCust').length > 0) {
-  resultsD = dummyCust;
-}
+
+assignPortfolioToRiskProfile(portfolioDef,dummyDef,portfolioReg,dummyReg,portfolioAgg,dummyAgg,dummyCust,resultsD);
 
 createPopoverExplanations();
 
@@ -149,13 +139,7 @@ $("form").submit(function( event ) {
         symbols.push(tempSymbol);
       }         // END PROMISE -> ACTIONS FROM HERE
 
-      // APPEND PRICE TO PAGE =======================
-
       appendPriceToPage(tempData);
-
-
-
-      //
 
       var invInput = $("#dollar_inv").val();
 
@@ -321,6 +305,21 @@ function createPopoverExplanations(){
     html: true,
     trigger: 'hover',
   });
+}
+
+function assignPortfolioToRiskProfile(portfolioDef,dummyDef,portfolioReg,dummyReg,portfolioAgg,dummyAgg,dummyCust,resultsD){
+  if ($('form').find('.portfolioDef').length > 0) {
+    createRecommendedAllocation(portfolioDef);
+    resultsD = dummyDef;
+  } else if ($('form').find('.portfolioReg').length > 0) {
+    createRecommendedAllocation(portfolioReg);
+    resultsD = dummyReg;
+  } else if ($('form').find('.portfolioAgg').length > 0) {
+    createRecommendedAllocation(portfolioAgg);
+    resultsD = dummyAgg;
+  } else if ($('form').find('.portfolioCust').length > 0) {
+    resultsD = dummyCust;
+  }
 }
 
 function updatePercent (event) {
