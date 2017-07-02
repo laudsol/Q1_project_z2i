@@ -128,6 +128,7 @@ $("form").submit(function( event ) {
         financeRequests.push($.getJSON('http://www.enclout.com/api/yahoo_finance/show.json?auth_token=xxxxxx&text='+ticker));
       }
     }
+
     Promise.all(financeRequests).then(function (results) {
       // console.log(results);
       //SET LOCAL STORAGE
@@ -149,9 +150,10 @@ $("form").submit(function( event ) {
       }         // END PROMISE -> ACTIONS FROM HERE
 
       // APPEND PRICE TO PAGE =======================
-      $('form').find('.currentPriceOutput').each(function (i) {
-        $(this).val("$"+tempData[i]);
-      });
+
+      appendPriceToPage(tempData);
+
+
 
       //
 
@@ -335,4 +337,10 @@ function updatePercent (event) {
     totalAllocation = totalPercent;
   });
   $('.totalAllocationPerc').html(totalPercent+"%");
+}
+
+function appendPriceToPage(tempData){
+  $('form').find('.currentPriceOutput').each(function (i) {
+    $(this).val("$"+tempData[i]);
+  });
 }
