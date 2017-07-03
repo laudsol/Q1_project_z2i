@@ -96,14 +96,16 @@ $("form").on('input',$('.allocationVal'), function (event) { // listener for all
 // ---------- END DATA DISPLAYED ON PAGE -------------------
 
 
-// Submit event: API call,
+// ---------- SUBMIT EVENT FOR API CALL, SORTING AND APPEDING DATA ---------
 $("form").submit(function( event ) {
-  var inputObj = $(this).serializeArray(); //all form data
-  var tickers = inputObj.filter(function(obj){  //finds tickers from form data
+  var inputObj = $(this).serializeArray(); // grabs all data from form
+  var tickers = inputObj.filter(function(obj){  // object containing tickers as inputs for getJSON
     return obj['name'] == 'ticker';
   });
-  var symbols = [];
-  var tempData = []; //takes parsed JSON data for action
+  var symbols = []; // array of symbols (tickers) used for share optimizations
+  var tempData = []; // data results of getJSON
+
+  // ----------- API CALL, DATA PARSING AND OPTIMIZATION ---------------------
   if (totalAllocation > 100) {
     window.alert("allocation cannot exceed 100%")
     return false;
@@ -116,24 +118,26 @@ $("form").submit(function( event ) {
         financeRequests.push($.getJSON('http://www.enclout.com/api/yahoo_finance/show.json?auth_token=xxxxxx&text='+ticker));
       }
     }
+  // ----------- END GET JSON -----------------------------------------------
 
+  // ----------- PROMISE FOR PARSING AND OPTIMIZATING DATA -----------------
     Promise.all(financeRequests).then(function (results) {
-      for (i = 0; i < results.length; i++) { //extract price and ticker
 
-        var tempObj = results[i][0];
-        var tempSymbol = tempObj.symbol;
-        var tempBid =  parseFloat(tempObj.bid);
-        var tempAsk =  parseFloat(tempObj.ask);
-        var tempClose =  parseFloat(tempObj.close);
-        var tempPrice = priceByBidaskOrClose(tempAsk, tempBid, tempClose);
-        var price = parseFloat(tempPrice.toFixed(2));
-        tempData.push(price);
-        symbols.push(tempSymbol);
-      }         // END PROMISE -> ACTIONS FROM HERE
+        for (i = 0; i < results.length; i++) {
+          var tempObj = results[i][0];
+          var tempSymbol = tempObj.symbol;
+          var tempBid =  parseFloat(tempObj.bid);
+          var tempAsk =  parseFloat(tempObj.ask);
+          var tempClose =  parseFloat(tempObj.close);
+          var tempPrice = priceByBidaskOrClose(tempAsk, tempBid, tempClose);
+          var price = parseFloat(tempPrice.toFixed(2));
+          tempData.push(price);
+          symbols.push(tempSymbol);
+        }
 
       appendPriceToPage(tempData);
 
-      var invInput = $("#dollar_inv").val();
+      var invInput = $("#dollar_inv").val(); //total dollars to invest;
 
       if (invInput.substring(0,1) == "$") {
         invInput = invInput.substring(1,invInput.length);
@@ -179,24 +183,20 @@ $("form").submit(function( event ) {
 
       sortDeltas(sortDeltas,deltas);
 
-      var minPrice = allPrices[0];
+      var minPrice = allPrices.reduce(function(a,b){
+        return Math.min(a,b);
+      });
 
-      for (i=0; i<allPrices.length; i++) {
-        if(minPrice > allPrices[i]) {
-          minPrice = allPrices[i];
-        }
-      }
+      allocateRemainingDollars(unallocatedDollars, minPrice);
+      appendOptimizedShares(sortedDeltas);
 
-    allocateRemainingDollars(unallocatedDollars, minPrice);
-    appendOptimizedShares(sortedDeltas)
-
-    }); //END API CALL
-  };
+    }); //END PROMISE
+  } //END API CALL
 });
+// ---------- END SUBMIT EVENT FOR API CALL, SORTING AND APPEDING DATA ---------
 
 
 //----------INDEX OF ALL FUNCTIONS INVOKED ABOVE-------------------
-
 function priceByBidaskOrClose(ask, bid, close){
   if (ask >= 0 && bid >= 0) {
     return (bid+ask)*0.5;
@@ -334,3 +334,4 @@ function appendOptimizedShares(sortedDeltas){
     }
   });
 }
+//---------- END INDEX OF ALL FUNCTIONS INVOKED ABOVE-------------------
