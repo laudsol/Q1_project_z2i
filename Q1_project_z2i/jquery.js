@@ -1,4 +1,4 @@
-// Begin - dummy price data in case API breaks
+//------------- DUMMY DATA -use if API breaks ----------------
 const dummyReg = [[{close: '123.01'}],[{close: '40.81'}],[{close:  '49.75'}],[{close: '21.53'}],[{close: '81.11'}],[{close: '54.19'}]];
 
 const dummyDef = [[{close: '81.11'}],[{close: '54.19'}],[{close: '25.06'}],[{close: '91.83'}],[{close: '15.03'}],[{close: '39.71'}],[{close: '123.01'}],[{close: '40.81'}]];
@@ -7,7 +7,8 @@ const dummyAgg = [[{close: '110.91'}],[{close: '123.01'}],[{close: '40.81'}],[{c
 
 const dummyCust = [[{close: '153.95'}],[{close: '955.89'}]]
 
-resultsD = ''
+
+// ----------END DUMMY DATA----------------------------------------
 
 //  Adding indivudual stock elements to portfolio page
 function addStockElement(event) {
@@ -78,7 +79,7 @@ var portfolioReg = [{ticker:'vti', percent: '30%'},{ticker:'vea', percent: '20%'
 
 var portfolioAgg = [{ticker:'vtwo', percent: '6%'},{ticker:'vti', percent: '24%'},{ticker:'vea', percent: '20%'},{ticker:'vss', percent: '5%'},{ticker:'iemg', percent: '18%'},{ticker:'fm', percent: '8%'}, {ticker:'hyg', percent:'11%'},{ticker:'ihy', percent: '3%'},{ticker:'emlc', percent: '1%'},{ticker:'emag', percent: '1%'},{ticker:'hyem', percent: '3%'}];
 
-assignPortfolioToRiskProfile(portfolioDef,dummyDef,portfolioReg,dummyReg,portfolioAgg,dummyAgg,dummyCust,resultsD);
+assignPortfolioToRiskProfile(portfolioDef,dummyDef,portfolioReg,dummyReg,portfolioAgg,dummyAgg,dummyCust);
 
 createPopoverExplanations();
 
@@ -275,18 +276,14 @@ function createPopoverExplanations(){
   });
 }
 
-function assignPortfolioToRiskProfile(portfolioDef,dummyDef,portfolioReg,dummyReg,portfolioAgg,dummyAgg,dummyCust,resultsD){
+function assignPortfolioToRiskProfile(portfolioDef,dummyDef,portfolioReg,dummyReg,portfolioAgg,dummyAgg,dummyCust){
   if ($('form').find('.portfolioDef').length > 0) {
     createRecommendedAllocation(portfolioDef);
-    resultsD = dummyDef;
   } else if ($('form').find('.portfolioReg').length > 0) {
     createRecommendedAllocation(portfolioReg);
-    resultsD = dummyReg;
   } else if ($('form').find('.portfolioAgg').length > 0) {
     createRecommendedAllocation(portfolioAgg);
-    resultsD = dummyAgg;
   } else if ($('form').find('.portfolioCust').length > 0) {
-    resultsD = dummyCust;
   }
 }
 
