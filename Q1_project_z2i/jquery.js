@@ -184,7 +184,7 @@ $("form").submit(function( event ) {
       var unallocatedDollars = (investment*(totalAllocation/100)) - investedDollars;
       var sortedDeltas = [];
 
-      sortDeltas();
+      sortDeltas(sortDeltas,deltas);
 
       var minPrice = allPrices[0];
 
@@ -194,7 +194,7 @@ $("form").submit(function( event ) {
         }
       }
 
-    allocateRemainingDollars();
+    allocateRemainingDollars(unallocatedDollars, minPrice);
     appendOptimizedShares(sortedDeltas)
 
     }); //END API CALL
@@ -309,13 +309,13 @@ function appendPriceToPage(tempData){
   });
 }
 
-function sortDeltas () {
+function sortDeltas (sortDeltas,deltas) {
   sortedDeltas = deltas.sort(function(a,b){
     return deltas[a]-deltas[b];
   });
 }
 
-function incrementalBuy () {
+function incrementalBuy (unallocatedDollars,sortedDeltas) {
   for (i = 0; i<sortedDeltas.length; i++) {
     // console.log(unallocatedDollars);
     if (unallocatedDollars > 0 && sortedDeltas[i].price <= unallocatedDollars){
@@ -326,9 +326,9 @@ function incrementalBuy () {
   }
 }
 
-function allocateRemainingDollars () {
+function allocateRemainingDollars (unallocatedDollars, minPrice) {
   if (unallocatedDollars > 0 && unallocatedDollars > minPrice) {
-  incrementalBuy();
+  incrementalBuy(unallocatedDollars,sortedDeltas);
   }
 }
 
