@@ -5,19 +5,18 @@ const dummyDef = [[{close: '81.11'}],[{close: '54.19'}],[{close: '25.06'}],[{clo
 
 const dummyAgg = [[{close: '110.91'}],[{close: '123.01'}],[{close: '40.81'}],[{close: '106.71'}],[{close: '49.75'}],[{close: '29.24'}],[{close: '88.01'}],[{close: '24.83'}],[{close: '18.57'}],[{close: '21.53'}],[{close: '24.74'}]];
 
-const dummyCust = [[{close: '153.95'}],[{close: '955.89'}]]
-
-
+const dummyCust = [[{close: '153.95'}],[{close: '955.89'}]];
 // ----------END DUMMY DATA----------------------------------------
 
-//  Adding indivudual stock elements to portfolio page
+
+// ----------ADD SINGLE ELEMENTS WITH STOCK INFO TO HTML-----------
 function addStockElement(event) {
 
-  //Primary elements
+  // Parent elements for stock div
   let elementRow = $('<div>').addClass("row stuff");
   let elementStock = $('<div>').addClass("stock col-md-10 col-md-offset-1 col-xs-12");
 
-  //first - ticker
+  // First child: ticker
   let elementTicker = $('<div>').addClass("tickerDiv col-md-2 col-md-offset-1");
   let elementLabelTicker = $('<div>').addClass("tickerText mobileActive col-xs-6").html('Ticker:');
   let elementBoxTicker = $('<div>').addClass("col-md-12 col-xs-6");
@@ -25,7 +24,7 @@ function addStockElement(event) {
 
   appendTickerElement(elementTicker,elementLabelTicker,elementInputTicker,elementBoxTicker,elementStock);
 
-  //second - allocation
+  // Second child: - percent allocation
   let elementPercent = $('<div>').addClass("allocationDiv col-md-2");
   let elementLabelPercent = $('<div>').addClass("allocationText mobileActive col-xs-6").html('Allocation:');
   let elementBoxPercent = $('<div>').addClass("col-md-12 col-xs-6");
@@ -33,7 +32,7 @@ function addStockElement(event) {
 
   appendAllocationElemenet(elementPercent,elementLabelPercent,elementInputPercent,elementBoxPercent,elementStock);
 
-  //third  - current shares
+  // Third child: current shares held
   let elementCurShar = $('<div>').addClass("currentSharesDiv col-md-2");
   let elementLabelCurShar = $('<div>').addClass("currentSharesText mobileActive col-xs-6").html('Current shares:');
   let elementBoxCurShar = $('<div>').addClass("col-md-12 col-xs-6");
@@ -41,7 +40,7 @@ function addStockElement(event) {
 
   appendCurrentSharesElement(elementCurShar,elementLabelCurShar,elementBoxCurShar,elementInputCurShar,elementStock);
 
-  //fourth - price
+  // Fourth child: price per share
   let elementPrice = $('<div>').addClass("priceDiv col-md-2");
   let elementPriceText = $('<div>').addClass("priceText mobileActive col-xs-6").html("Price:");
   let elementBoxPrice = $('<div>').addClass("col-md-12 col-xs-6");
@@ -49,7 +48,7 @@ function addStockElement(event) {
 
   appendPrice(elementPrice,elementPriceText,elementBoxPrice,elementPriceInput,elementStock);
 
-  //fifth - recommended shares
+  // Fifth child: recommended shares to purchase
   let elementRecomShares = $('<div>').addClass("sharesDiv col-md-2");
   let elementRecomSharesText = $('<div>').addClass("sharesText mobileActive col-xs-6").html("Recommended shares:");
   let elementBoxRcomShares = $('<div>').addClass("col-md-12 col-xs-6");
@@ -57,11 +56,12 @@ function addStockElement(event) {
 
   appendRecoShares(elementRecomShares,elementRecomSharesText,elementBoxRcomShares,elementRecomSharesOutput,elementStock);
 
-  // append entire share element` to form
-
-  appendShareDivToForm(elementRow,elementStock);
+  appendShareDivToForm(elementRow,elementStock); //append sinlge stock div to page
 }
+// ---------- END ADD SINGLE ELEMENTS WITH STOCK INFO TO HTML-----------
 
+
+// ---------- LISTENERS TO ADD/REMOVE SIGNLE STOCK ELEMENTS FROM PAGE --
 $('.addBtn').on('click',function(event){
   addStockElement();
 });
@@ -70,9 +70,10 @@ $('.remvBtn').on('click',function(event){
   $('.stuff').last().remove();
   updatePercent();
 });
+// ---------- END LISTENERS TO ADD/REMOVE SIGNLE STOCK ELEMENTS FROM PAGE --
 
-// Portfolio composition and construction
 
+// ---------- DATA AND CONSTRUCTION OF RECOMMENDED PORTFOLIO ALLOCATIONS ---
 var portfolioDef = [{ticker:'bnd', percent: '32%'},{ticker:'bndx', percent: '24%'},{ticker:'govt', percent: '8%'},{ticker:'igov',percent:'6%'},{ticker:'pgx', percent:'2%'}, {ticker:'sphd', percent:'2%'}, {ticker:'vti', percent:'14%'}, {ticker:'vea', percent:'12%'}];
 
 var portfolioReg = [{ticker:'vti', percent: '30%'},{ticker:'vea', percent: '20%'},{ticker:'iemg', percent: '10%'},{ticker:'emag', percent: '5%'},{ticker:'bnd', percent: '20%'},{ticker:'bndx', percent: '15%'}];
@@ -80,22 +81,20 @@ var portfolioReg = [{ticker:'vti', percent: '30%'},{ticker:'vea', percent: '20%'
 var portfolioAgg = [{ticker:'vtwo', percent: '6%'},{ticker:'vti', percent: '24%'},{ticker:'vea', percent: '20%'},{ticker:'vss', percent: '5%'},{ticker:'iemg', percent: '18%'},{ticker:'fm', percent: '8%'}, {ticker:'hyg', percent:'11%'},{ticker:'ihy', percent: '3%'},{ticker:'emlc', percent: '1%'},{ticker:'emag', percent: '1%'},{ticker:'hyem', percent: '3%'}];
 
 assignPortfolioToRiskProfile(portfolioDef,dummyDef,portfolioReg,dummyReg,portfolioAgg,dummyAgg,dummyCust);
+// ---------- END DATA AND CONSTRUCTION OF RECOMMENDED PORTFOLIO ALLOCATIONS ---
 
-createPopoverExplanations();
+// ---------- DATA DISPLAYED ON PAGE -------------------
+createPopoverExplanations(); // user can hover on title to view explanation
 
 var totalAllocation = 100;
 
-updatePercent();
+updatePercent(); // computes total percent allocation and displays on page
 
-$("form").on('input',$('.allocationVal'), function (event) { // listener for percent change
+$("form").on('input',$('.allocationVal'), function (event) { // listener for allocation change, updates on page
   updatePercent();
 });
+// ---------- END DATA DISPLAYED ON PAGE -------------------
 
-// local storage
-
-// myStorage = localStorage;
-// localData = JSON.parse(localStorage['data']);
-var allData = [];
 
 // Submit event: API call,
 $("form").submit(function( event ) {
@@ -119,12 +118,6 @@ $("form").submit(function( event ) {
     }
 
     Promise.all(financeRequests).then(function (results) {
-      // console.log(results);
-      //SET LOCAL STORAGE
-      // localStorage.setItem('data',JSON.stringify(results)); //local storage
-      // localData = JSON.parse(localStorage['data']);
-      // console.log(localData);
-
       for (i = 0; i < results.length; i++) { //extract price and ticker
 
         var tempObj = results[i][0];
