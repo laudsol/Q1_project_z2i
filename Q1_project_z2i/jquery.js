@@ -166,157 +166,170 @@ $("form").on('input',$('.allocationVal'), function (event) { // listener for per
 var allData = [];
 
 
+$("form").submit(function(event) {
+  event.preventDefault();
+  let stockTickers = $(this).serializeArray()
+    .filter(object => object.name === 'ticker')
+    .map(object => object.value)
+  console.log('stockTickers', stockTickers)
+})
+
+
 // Submit event: API call,
 
-$("form").submit(function( event ) {
-  var inputObj = $(this).serializeArray(); //all form data
-  var tickers = inputObj.filter(function(obj){  //finds tickers from form data
-    return obj['name'] == 'ticker';
-  });
-  var symbols = [];
-  var tempData = []; //takes parsed JSON data for action
-  if (totalAllocation > 100) {
-    window.alert("allocation cannot exceed 100%")
-    return false;
-  } else {
-    event.preventDefault();
-    var financeRequests = [];
-    for (var key in tickers) {
-      let ticker = tickers[key].value;
-      if (ticker !== "") {
-        financeRequests.push($.getJSON('http://www.enclout.com/api/yahoo_finance/show.json?auth_token=xxxxxx&text='+ticker));
-      }
-    }
-    Promise.all(financeRequests).then(function (results) {
-      // console.log(results);
-      //SET LOCAL STORAGE
-      // localStorage.setItem('data',JSON.stringify(results)); //local storage
-      // localData = JSON.parse(localStorage['data']);
-      // console.log(localData);
+// $("form").submit(function(event) {
+//   var inputObj = $(this).serializeArray(); //all form data
+//   console.log('inputObj', inputObj)
+
+//   var tickers = inputObj.filter(function(obj){  //finds tickers from form data
+//     return obj['name'] == 'ticker';
+//   });
+//   var symbols = [];
+//   var tempData = []; //takes parsed JSON data for action
+//   if (totalAllocation > 100) {
+//     window.alert("allocation cannot exceed 100%")
+//     return false;
+//   } else {
+//     event.preventDefault();
+//     var financeRequests = [];
+//     for (var key in tickers) {
+//       let ticker = tickers[key].value;
+//       if (ticker !== "") {
+//         financeRequests.push($.getJSON('http://www.enclout.com/api/yahoo_finance/show.json?auth_token=xxxxxx&text='+ticker));
+//       }
+//     }
+//     Promise.all(financeRequests).then(function (results) {
+    
+      
+
+//       // SET LOCAL STORAGE
+//       // localStorage.setItem('data',JSON.stringify(results)); //local storage
+//       // localData = JSON.parse(localStorage['data']);
+//       // console.log(localData);
 
 
 
-      for (i = 0; i < results.length; i++) { //extract price and ticker
+//       for (i = 0; i < results.length; i++) { //extract price and ticker
 
-        var tempObj = results[i][0];
-        var tempSymbol = tempObj.symbol;
-        var tempBid =  parseFloat(tempObj.bid);
-        var tempAsk =  parseFloat(tempObj.ask);
-        var tempClose =  parseFloat(tempObj.close);
-
-
-        var tempPrice = price_by_bidask_or_close(tempAsk, tempBid, tempClose)
-
-        var tempPrice = 0;
+//         var tempObj = results[i][0];
+//         var tempSymbol = tempObj.symbol;
+//         var tempBid =  parseFloat(tempObj.bid);
+//         var tempAsk =  parseFloat(tempObj.ask);
+//         var tempClose =  parseFloat(tempObj.close);
 
 
-        var price = parseFloat(tempPrice.toFixed(2));
-        tempData.push(price);
+//         var tempPrice = price_by_bidask_or_close(tempAsk, tempBid, tempClose)
 
-        symbols.push(tempSymbol);
+//         var tempPrice = 0;
 
-      }         // END PROMISE -> ACTIONS FROM HERE
 
-      // APPEND PRICE TO PAGE =======================
-      $('form').find('.currentPriceOutput').each(function (i) {
-        $(this).val("$"+tempData[i]);
-      });
+//         var price = parseFloat(tempPrice.toFixed(2));
+//         tempData.push(price);
 
-      //
+//         symbols.push(tempSymbol);
 
-      var invInput = $("#dollar_inv").val();
+//       }         // END PROMISE -> ACTIONS FROM HERE
 
-      if (invInput.substring(0,1) == "$") {
-        invInput = invInput.substring(1,invInput.length);
-      }
+//       // APPEND PRICE TO PAGE =======================
+//       $('form').find('.currentPriceOutput').each(function (i) {
+//         $(this).val("$"+tempData[i]);
+//       });
 
-      var investment = parseFloat(invInput);
+//       //
 
-      var percent = inputObj.filter(function(obj){  //gets an array of % from form
-        return obj['name'] == 'percent';
-      });
+//       var invInput = $("#dollar_inv").val();
 
-      var currentSharesArr = [];
-      var totalInvestedDollars = investment;
+//       if (invInput.substring(0,1) == "$") {
+//         invInput = invInput.substring(1,invInput.length);
+//       }
 
-      $('form').find('.currentSharesInput').each(function (i) {
-        let targetDollars = parseFloat($(this).val())*tempData[i];
-        totalInvestedDollars += (Math.min(1,tempData.length-1))*targetDollars;
-        currentSharesArr.push(parseFloat($(this).val()));
-      });
+//       var investment = parseFloat(invInput);
 
-      var investedDollars = 0;
-      var deltas = [];
-      var allPrices = [];
+//       var percent = inputObj.filter(function(obj){  //gets an array of % from form
+//         return obj['name'] == 'percent';
+//       });
 
-      $('form').find('.sharesOutput').each(function (i) { // share purchase recommendation
-        var percentNum = parseFloat(percent[i].value)/100;
-        let price = tempData[i];
-        let dollarTarget = (totalInvestedDollars*percentNum)-((Math.min(1,tempData.length-1))*(currentSharesArr[i]*price));
+//       var currentSharesArr = [];
+//       var totalInvestedDollars = investment;
 
-        allPrices.push(price);
+//       $('form').find('.currentSharesInput').each(function (i) {
+//         let targetDollars = parseFloat($(this).val())*tempData[i];
+//         totalInvestedDollars += (Math.min(1,tempData.length-1))*targetDollars;
+//         currentSharesArr.push(parseFloat($(this).val()));
+//       });
 
-        shares = Math.max(Math.floor((dollarTarget)/price),0);
-        $(this).val(shares);
+//       var investedDollars = 0;
+//       var deltas = [];
+//       var allPrices = [];
 
-        let delta = 1-((shares*price)/dollarTarget); // get delta between dollars spent, and allocated dollars
-        let readySymbol = symbols[i]
-        deltas.push({symbol: readySymbol, delta: delta, price: price, shares:shares})
-        investedDollars += (shares*price);
-      });
-      var unallocatedDollars = (investment*(totalAllocation/100)) - investedDollars;
-      var sortedDeltas = [];
+//       $('form').find('.sharesOutput').each(function (i) { // share purchase recommendation
+//         var percentNum = parseFloat(percent[i].value)/100;
+//         let price = tempData[i];
+//         let dollarTarget = (totalInvestedDollars*percentNum)-((Math.min(1,tempData.length-1))*(currentSharesArr[i]*price));
 
-      function sortDeltas () { // sort deltas highest to lowest
-        sortedDeltas = deltas.sort(function(a,b){
-          return deltas[a]-deltas[b];
-        });
-      }
+//         allPrices.push(price);
 
-      sortDeltas();
+//         shares = Math.max(Math.floor((dollarTarget)/price),0);
+//         $(this).val(shares);
 
-      // console.log(sortedDeltas);
+//         let delta = 1-((shares*price)/dollarTarget); // get delta between dollars spent, and allocated dollars
+//         let readySymbol = symbols[i]
+//         deltas.push({symbol: readySymbol, delta: delta, price: price, shares:shares})
+//         investedDollars += (shares*price);
+//       });
+//       var unallocatedDollars = (investment*(totalAllocation/100)) - investedDollars;
+//       var sortedDeltas = [];
 
-      function incrementalBuy () {
-        for (i = 0; i<sortedDeltas.length; i++) {
-          // console.log(unallocatedDollars);
-          if (unallocatedDollars > 0 && sortedDeltas[i].price <= unallocatedDollars){
-            sortedDeltas[i].shares += 1;
-            unallocatedDollars -= sortedDeltas[i].price;
-            // console.log(sortedDeltas[i].shares);
-          };
-        }
-      }
+//       function sortDeltas () { // sort deltas highest to lowest
+//         sortedDeltas = deltas.sort(function(a,b){
+//           return deltas[a]-deltas[b];
+//         });
+//       }
 
-      var minPrice = allPrices[0];
+//       sortDeltas();
 
-      for (i=0; i<allPrices.length; i++) {
-        if(minPrice > allPrices[i]) {
-          minPrice = allPrices[i];
-        }
-      }
+//       // console.log(sortedDeltas);
 
-      function allocateRemainingDollars () {
-        if (unallocatedDollars > 0 && unallocatedDollars > minPrice) {
-        incrementalBuy();
-        }
-      }
+//       function incrementalBuy () {
+//         for (i = 0; i<sortedDeltas.length; i++) {
+//           // console.log(unallocatedDollars);
+//           if (unallocatedDollars > 0 && sortedDeltas[i].price <= unallocatedDollars){
+//             sortedDeltas[i].shares += 1;
+//             unallocatedDollars -= sortedDeltas[i].price;
+//             // console.log(sortedDeltas[i].shares);
+//           };
+//         }
+//       }
 
-    allocateRemainingDollars();
+//       var minPrice = allPrices[0];
 
-    console.log(deltas);
+//       for (i=0; i<allPrices.length; i++) {
+//         if(minPrice > allPrices[i]) {
+//           minPrice = allPrices[i];
+//         }
+//       }
 
-    $('form').find('.stock').each(function (j) {
-      for(i = 0; i<sortedDeltas.length; i++) {
-        if (sortedDeltas[i].symbol == $(this).find('.tickerInput').val()) {
-          $(this).find('.sharesOutput').val(sortedDeltas[i].shares);
-        }
-      }
-    });
+//       function allocateRemainingDollars () {
+//         if (unallocatedDollars > 0 && unallocatedDollars > minPrice) {
+//         incrementalBuy();
+//         }
+//       }
 
-    }); //END API CALL
-  };
-});
+//     allocateRemainingDollars();
+
+//     console.log(deltas);
+
+//     $('form').find('.stock').each(function (j) {
+//       for(i = 0; i<sortedDeltas.length; i++) {
+//         if (sortedDeltas[i].symbol == $(this).find('.tickerInput').val()) {
+//           $(this).find('.sharesOutput').val(sortedDeltas[i].shares);
+//         }
+//       }
+//     });
+
+//     }); //END API CALL
+//    };
+// });
 
 function price_by_bidask_or_close(ask, bid, close){
   if (ask >= 0 && bid >= 0) {
