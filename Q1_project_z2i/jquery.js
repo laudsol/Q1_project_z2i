@@ -1,11 +1,8 @@
 // dummy price data
 
 const dummyReg = [[{close: '123.01'}],[{close: '40.81'}],[{close: '49.75'}],[{close: '21.53'}],[{close: '81.11'}],[{close: '54.19'}]];
-
 const dummyDef = [[{close: '81.11'}],[{close: '54.19'}],[{close: '25.06'}],[{close: '91.83'}],[{close: '15.03'}],[{close: '39.71'}],[{close: '123.01'}],[{close: '40.81'}]];
-
 const dummyAgg = [[{close: '110.91'}],[{close: '123.01'}],[{close: '40.81'}],[{close: '106.71'}],[{close: '49.75'}],[{close: '29.24'}],[{close: '88.01'}],[{close: '24.83'}],[{close: '18.57'}],[{close: '21.53'}],[{close: '24.74'}]];
-
 const dummyCust = [[{close: '153.95'}],[{close: '955.89'}]]
 
 resultsD = ''
@@ -168,97 +165,82 @@ var allData = [];
 
 // Submit event: API call,
 
-$("form").submit(function( event ) {
-  var inputObj = $(this).serializeArray(); //all form data
-  var tickers = inputObj.filter(function(obj){  //finds tickers from form data
-    return obj['name'] == 'ticker';
-  });
+$("form").submit(async function(event) {
+  let stockTickers = $(this).serializeArray()
+    .filter(object => object.name === 'ticker')
+    .map(object => object.value)
+    .toString()
+
   var symbols = [];
-  var tempData = []; //takes parsed JSON data for action
   if (totalAllocation > 100) {
     window.alert("allocation cannot exceed 100%")
     return false;
   } else {
     event.preventDefault();
-    var financeRequests = [];
-    for (var key in tickers) {
-      let ticker = tickers[key].value;
-      if (ticker !== "") {
-        financeRequests.push($.getJSON('http://www.enclout.com/api/yahoo_finance/show.json?auth_token=xxxxxx&text='+ticker));
-      }
+    
+  let url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${stockTickers}&types=quote`
+  
+  let apiResults = (url) => {
+    return new Promise((resolve, reject) => {
+      $.get(
+        url,
+      ).done((data) => {
+        resolve(data)
+      })
+    });
+  }
+
+  let stockData = await apiResults(url)
+
+  let priceArray = Object.keys(stockData).map((ticker) => {
+    let bid = stockData[ticker].quote.iexBidPrice
+    let ask = stockData[ticker].quote.iexAskPrice
+    let close = stockData[ticker].quote.close
+    if(bid !== 0 && ask !== 0){
+      return (bid + ask)/2
+    } else {
+      return close
     }
-    Promise.all(financeRequests).then(function (results) {
-      // console.log(results);
-      //SET LOCAL STORAGE
-      // localStorage.setItem('data',JSON.stringify(results)); //local storage
-      // localData = JSON.parse(localStorage['data']);
-      // console.log(localData);
-
-
-
-      for (i = 0; i < results.length; i++) { //extract price and ticker
-
-        var tempObj = results[i][0];
-        var tempSymbol = tempObj.symbol;
-        var tempBid =  parseFloat(tempObj.bid);
-        var tempAsk =  parseFloat(tempObj.ask);
-        var tempClose =  parseFloat(tempObj.close);
-
-
-        var tempPrice = price_by_bidask_or_close(tempAsk, tempBid, tempClose)
-
-        var tempPrice = 0;
-
-
-        var price = parseFloat(tempPrice.toFixed(2));
-        tempData.push(price);
-
-        symbols.push(tempSymbol);
-
-      }         // END PROMISE -> ACTIONS FROM HERE
-
-      // APPEND PRICE TO PAGE =======================
+  })
+  
       $('form').find('.currentPriceOutput').each(function (i) {
-        $(this).val("$"+tempData[i]);
+        $(this).val("$"+priceArray[i]);
       });
 
-      //
-
       var invInput = $("#dollar_inv").val();
-
+      
       if (invInput.substring(0,1) == "$") {
         invInput = invInput.substring(1,invInput.length);
       }
-
+      
       var investment = parseFloat(invInput);
-
-      var percent = inputObj.filter(function(obj){  //gets an array of % from form
-        return obj['name'] == 'percent';
-      });
-
+      
+      var percent = $(this).serializeArray()
+      .filter(obj => obj.name === 'percent')
+      
       var currentSharesArr = [];
       var totalInvestedDollars = investment;
-
+      
       $('form').find('.currentSharesInput').each(function (i) {
-        let targetDollars = parseFloat($(this).val())*tempData[i];
-        totalInvestedDollars += (Math.min(1,tempData.length-1))*targetDollars;
+        let targetDollars = parseFloat($(this).val())*priceArray[i];
+        totalInvestedDollars += (Math.min(1,priceArray.length-1))*targetDollars;
         currentSharesArr.push(parseFloat($(this).val()));
       });
-
+      
       var investedDollars = 0;
       var deltas = [];
       var allPrices = [];
-
+      
       $('form').find('.sharesOutput').each(function (i) { // share purchase recommendation
         var percentNum = parseFloat(percent[i].value)/100;
-        let price = tempData[i];
-        let dollarTarget = (totalInvestedDollars*percentNum)-((Math.min(1,tempData.length-1))*(currentSharesArr[i]*price));
-
+        let price = priceArray[i];
+        let dollarTarget = (totalInvestedDollars*percentNum)-((Math.min(1,priceArray.length-1))*(currentSharesArr[i]*price));
+        
         allPrices.push(price);
-
+        
         shares = Math.max(Math.floor((dollarTarget)/price),0);
         $(this).val(shares);
-
+        
         let delta = 1-((shares*price)/dollarTarget); // get delta between dollars spent, and allocated dollars
         let readySymbol = symbols[i]
         deltas.push({symbol: readySymbol, delta: delta, price: price, shares:shares})
@@ -267,7 +249,7 @@ $("form").submit(function( event ) {
       var unallocatedDollars = (investment*(totalAllocation/100)) - investedDollars;
       var sortedDeltas = [];
 
-      function sortDeltas () { // sort deltas highest to lowest
+      function sortDeltas () {
         sortedDeltas = deltas.sort(function(a,b){
           return deltas[a]-deltas[b];
         });
@@ -275,15 +257,11 @@ $("form").submit(function( event ) {
 
       sortDeltas();
 
-      // console.log(sortedDeltas);
-
       function incrementalBuy () {
         for (i = 0; i<sortedDeltas.length; i++) {
-          // console.log(unallocatedDollars);
           if (unallocatedDollars > 0 && sortedDeltas[i].price <= unallocatedDollars){
             sortedDeltas[i].shares += 1;
             unallocatedDollars -= sortedDeltas[i].price;
-            // console.log(sortedDeltas[i].shares);
           };
         }
       }
@@ -304,24 +282,12 @@ $("form").submit(function( event ) {
 
     allocateRemainingDollars();
 
-    console.log(deltas);
-
     $('form').find('.stock').each(function (j) {
-      for(i = 0; i<sortedDeltas.length; i++) {
+      for(i = 0; i < sortedDeltas.length; i++) {
         if (sortedDeltas[i].symbol == $(this).find('.tickerInput').val()) {
           $(this).find('.sharesOutput').val(sortedDeltas[i].shares);
         }
       }
     });
-
-    }); //END API CALL
-  };
-});
-
-function price_by_bidask_or_close(ask, bid, close){
-  if (ask >= 0 && bid >= 0) {
-    return (bid+ask)*0.5;
-  } else {
-    return close;
   }
-}
+});
