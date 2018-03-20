@@ -168,7 +168,7 @@ var allData = [];
 
 // Submit event: API call,
 
-$("form").submit(function(event) {
+$("form").submit(async function(event) {
   let stockTickers = $(this).serializeArray()
     .filter(object => object.name === 'ticker')
     .map(object => object.value)
@@ -183,30 +183,32 @@ $("form").submit(function(event) {
     return false;
   } else {
     event.preventDefault();
-    // var financeRequests = [];
-    // for (var key in tickers) {
-    //   let ticker = tickers[key].value;
-    //   if (ticker !== "") {
-    //     financeRequests.push($.getJSON('http://www.enclout.com/api/yahoo_finance/show.json?auth_token=xxxxxx&text='+ticker));
-    //   }
-    // }
-    // Promise.all(financeRequests).then(function (results) {
+    
+  let url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${stockTickers}&types=quote`
+  
+  let apiResults = (url) => {
+    return new Promise((resolve, reject) => {
+      $.get(
+        url,
+      ).done((data) => {
+        resolve(data)
+      })
+    });
+  }
 
-    let apiResults = async (stockTickers) => {
-      let results = await $.getJSON(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${stockTickers}&types=quote`)
-      return results
-    }
+  let stockData = await apiResults(url)
 
-    let prices = apiResults(stockTickers)
-    console.log('prices', prices)
+  console.log('stockData', stockData)
+
+
+    
+    //Set and retrieve local storage
+    // localStorage.setItem('data',JSON.stringify(apiPrices)); 
+    // localData = JSON.parse(localStorage['data']);
   }
     
       
 
-      // SET LOCAL STORAGE
-      // localStorage.setItem('data',JSON.stringify(results)); //local storage
-      // localData = JSON.parse(localStorage['data']);
-      // console.log(localData);
 
 
 
