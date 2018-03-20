@@ -40,6 +40,10 @@ body {
   padding-bottom: 100px;
 }
 
+.bottom-boxes {
+  margin-bottom: 60px;
+}
+
 /*TOP Nav =====================*/
 
 .topNav {
@@ -62,8 +66,8 @@ body {
 /*BOTTOM Nav*/
 
 .bottom {
-  position:absolute;
-   bottom:0;
+  position: absolute;
+   bottom: 0;
    width: 100%;
    height:70px;
 }
