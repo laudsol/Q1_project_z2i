@@ -1,6 +1,6 @@
 # Q1_project_z2i
 
-**Synopsis:** My project is a free tool to help first-time investors create a well-balanced portfolio of financial investments. I will provide several types of portfolios for users to choose from. Users will input the dollar amount they want to invest, and using the Yahoo Finance API and some portfolio allocaiton logic, the tool will return the number of shares users should purchase in a given fund.
+**Synopsis:** My project is a free tool to help first-time investors create a well-balanced portfolio of financial investments. I will provide several types of portfolios for users to choose from. Users will input the dollar amount they want to invest, and using the IEX Trading API and some portfolio allocaiton logic, the tool will return the number of shares users should purchase in a given fund.
 
 **API Status:** It's working!!!
 
